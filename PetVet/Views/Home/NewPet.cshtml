@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "NewPet";
+}
+
+<div class="container">
+    <div style="text-align:center;"><h1>Nueva Mascota</h1></div>
+    <div class="mt-1">
+        <form>
+            <div style="display:flex; justify-content:space-evenly; margin-bottom:1rem;">
+                <div class="text-start">
+                    <div class="weight-600">Nombre</div>
+                    <input class="width-100 input-inicio" required />
+                </div>
+                <div class="text-start">
+                    <div class="weight-600">Raza</div>
+                    <input class="width-100 input-inicio" required />
+                </div>
+            </div>
+            <div style="display: flex; justify-content: space-evenly; margin-bottom: 1rem;">
+                <div class="text-start">
+                    <div class="weight-600">Edad</div>
+                    <input class="width-100 input-inicio" required />
+                </div>
+                <div class="text-start">
+                    <div class="weight-600">Especie</div>
+                    <input class="width-100 input-inicio" required />
+                </div>
+            </div>
+            <div style="display: flex; justify-content: space-evenly; margin-bottom: 1rem;">
+                <div class="text-start">
+                    <div class="weight-600">Sexo</div>
+                    <input class="width-100 input-inicio" required />
+                </div>
+                <div class="text-start">
+                    <div class="weight-600">Color</div>
+                    <input class="width-100 input-inicio" required />
+                </div>
+            </div>
+            <div style="display: flex; justify-content: space-evenly; margin-bottom: 1rem;">
+                <div class="text-start">
+                    <div class="weight-600">Esterilizado</div>
+                    <input class="width-100 input-inicio" required />
+                </div>
+                <div class="text-start">
+                    <div class="weight-600">Vetrinaria</div>
+                    <input class="width-100 input-inicio" required />
+                </div>
+            </div>
+            
+            <div style="margin-top:4rem; display:flex; justify-content:space-evenly;">
+                @*<div>
+                    <button type="button" class="btn btn-secondary">Cancelar</button>
+                </div>*@
+                <div>
+                    <button type="button" class="btn btn-warning">Crear Mascota</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+</div>

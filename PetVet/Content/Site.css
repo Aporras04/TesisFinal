@@ -1,0 +1,93 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.d-flex{
+    display:flex !important;
+}
+
+.width-100 {
+    width: 100%;
+}
+
+.total-height {
+    height: calc(100vh - 50px);
+}
+
+.center-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mb-4 {
+    margin-bottom: 4rem;
+}
+
+.mb-2 {
+    margin-bottom: 2rem !important;
+}
+
+.weight-600 {
+    font-weight: 600;
+}
+
+.fs-08 {
+    font-size: 0.8rem;
+}
+
+.input-inicio {
+    border-radius: 8px;
+    height: 30px;
+}
+
+.btn-inicio {
+    width: 80%;
+    height: 40px;
+    border-radius: 8px;
+    background-color: rgb(107, 122, 143, .4);
+    border-color: rgb(107, 122, 143, .4);
+}
+
+.img-container {
+    background-color: #6B7A8F;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.text-end{
+    text-align:end;
+}
+
+.text-start{
+    text-align:start;
+}
+
+@media(max-width:700px){
+    #login-form{
+        width:90% !important;
+    }
+}

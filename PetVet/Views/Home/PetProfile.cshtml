@@ -1,0 +1,116 @@
+﻿
+@{
+    ViewBag.Title = "PetProfile";
+}
+
+<style>
+
+    body {
+        background-color: rgba(220, 199, 170, .25)
+    }
+
+    .k-grid-header{
+        padding-right:0 !important;
+    }
+
+    .k-grid-content{
+        overflow-y:hidden;
+        overflow-x:auto;
+    }
+
+    .k-grid-content table,
+    table{
+        width: 777px;
+    }
+
+    .k-pager-numbers{
+        display:none !important;
+    }
+
+    .k-pager-numbers-wrap{
+        display:none;
+    }
+
+    /*.k-pager-numbers-wrap {
+        width: 75%;
+        text-align: end;
+        justify-content: flex-end;
+    }*/
+
+    /*.k-pager-numbers-wrap .k-dropdown{
+        border:0 !important
+    }*/
+
+    .k-pager-wrap{
+        display:flex;
+    }
+
+
+    @@media (min-width: 992px){
+        #perfil-container {
+            width: 809px !important;
+        }
+    }
+
+</style>
+
+<div id="perfil-container" class="container">
+    <div style="text-align:center;"><h1>Candy</h1></div>
+    <div class="mt-1">
+        <div>Información:</div>
+        <div>
+            <div>Nombre: Candy</div>
+            <div>Edad: 3 anos</div>
+            <div>Raza: Mestiza</div>
+            <div>Especie: Canina</div>
+            <div>Sexo: Hembra</div>
+            <div>Esterilizado: Si</div>
+        </div>
+    </div>
+    <div class="mt-1">
+        <div id="tratamientos-grid"></div>
+    </div>
+</div>
+
+<script>
+    var gridData = [
+        { nombre: "Candy", edad:"1 mes", fecha: "10 Dic 2023", peso: "10 Kl", tratamiento: "vacuna", doctor: "Roberto Lopez", cita:"01 Ene 2024" },
+        { nombre: "Candy", edad: "1 mes", fecha: "20 Dic 2023", peso: "20 Kl", tratamiento: "vacuna", doctor: "Roberto Lopez", cita: "01 Ene 2024" },
+        { nombre: "Candy", edad: "1 mes", fecha: "10 Dic 2023", peso: "5 Kl", tratamiento: "vacuna", doctor: "Roberto Lopez", cita: "01 Ene 2024" },
+        { nombre: "Candy", edad: "1 mes", fecha: "5 Dic 2023", peso: "10 Kl", tratamiento: "vacuna", doctor: "Roberto Lopez", cita: "01 Ene 2024" },
+        { nombre: "Candy", edad: "1 mes", fecha: "10 Dic 2023", peso: "20 Kl", tratamiento: "vacuna", doctor: "Roberto Lopez", cita: "01 Ene 2024" },
+        { nombre: "Candy", edad: "1 mes", fecha: "25 Dic 2023", peso: "5 Kl", tratamiento: "vacuna", doctor: "Roberto Lopez",  cita: "01 Ene 2024" },
+    ];
+
+    $("#tratamientos-grid").kendoGrid({
+        dataSource: {
+            data: gridData
+        },
+        columns: [
+            { field: "nombre", title: "Nombre", width: 100 },
+            { field: "edad", title: "Edad", width: 100 },
+            { field: "fecha", title: "Fecha Revision", width: 150, sortable: {initialDirection:"desc"}},
+            { field: "peso", title: "Peso", width: 80},
+            { field: "tratamiento", title: "Tratamiento", width: 200 },
+            { field: "doctor", title: "Veterinario", width: 120 },
+            { field: "cita", title: "Próxima Cita", width: 100},
+        ],
+        pageable: {
+            pageSize: 10,
+            //input: true,
+            messages: {
+                display: "{1} de {2} Registros", 
+                empty: "No existen registros", 
+                page: "", 
+                of: "", 
+                itemsPerPage: "", 
+                first: "", 
+                previous: "", 
+                next: "", 
+                last: "" 
+            }
+        },
+        sortable: true,
+        filterable:true
+    });
+</script>

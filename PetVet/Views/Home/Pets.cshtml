@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "Mis Mascotas";
+}
+
+<style>
+
+    body {
+        background-color: rgba(220, 199, 170, .25)
+    }
+
+    .k-listview-content{
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .mascota-img {
+        width: 30%;
+    }
+
+    #mascotas-list {
+        padding: 1rem;
+        border: none;
+        background-color: transparent;
+    }
+
+    .btn-new-mas {
+        background-color: #F7C331;
+        width: 30%;
+        color: white;
+        height: 40px;
+    }
+
+    .pet-card {
+        width: 18rem;
+        text-align: center;
+        height: fit-content;
+        margin-bottom: 1rem;
+        margin-right:3rem;
+        background-color: white;
+        border: 0;
+        border-radius: 8px;
+        box-shadow: 6px 7px 5px grey;
+        padding: 1.5rem;
+        cursor: pointer;
+    }
+</style>
+
+<div class="container">
+    <div style="text-align:center;"><h1>Mis Mascotas</h1></div>
+    <div id="mascotas-list"></div>
+    <div style="margin-top:4rem;text-align:center;">
+        <button onclick="nuevaMascota()" type="button" class="btn btn-new-mas">Nueva Mascota</button>
+    </div>
+</div>
+
+<script type="text/x-kendo-template" id="template">
+    <div class="card pet-card" onclick="goToPet()">
+        <div style="height:5rem;">
+            <img class="mascota-img" src="/Content/img/#:type#.png" />
+        </div>
+
+        <div class="card-body">
+            <h3>#:name#</h3>
+            <p>#:age#</p>
+        </div>
+    </div>
+</script>
+
+<script>
+    var mascotas = [
+        { id: 1, name: "Candy", age:"3 años", type: "perro" },
+        { id: 2, name: "Kitty", age: "5 años", type: "gato" },
+        { id: 3, name: "Bonnie", age: "5 meses", type: "conejo" },
+    ];
+
+    $("#mascotas-list").kendoListView({
+        dataSource: {
+            data: mascotas
+        },
+        template: kendo.template($("#template").html()),
+        pageable: false
+    });
+
+    function goToPet() {
+        window.location.href = "@Html.Raw(Url.Action("PetProfile", "Home"))";
+    }
+
+    function nuevaMascota() {
+        window.location.href = "@Html.Raw(Url.Action("NewPet", "Home"))";
+    }
+
+</script>
