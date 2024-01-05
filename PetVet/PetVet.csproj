@@ -166,6 +166,7 @@
     <Content Include="Views\Home\Pets.cshtml" />
     <Content Include="Views\Home\NewPet.cshtml" />
     <Content Include="Views\Home\PetProfile.cshtml" />
+    <Content Include="Views\Home\UserProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
