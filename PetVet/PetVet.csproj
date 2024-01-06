@@ -179,6 +179,9 @@
     <Content Include="Views\Home\Pets.cshtml" />
     <Content Include="Views\Home\NewPet.cshtml" />
     <Content Include="Views\Home\PetProfile.cshtml" />
+    <Content Include="Views\Home\UserProfile.cshtml" />
+    <Content Include="Views\Home\DocVets.cshtml" />
+    <Content Include="Views\Home\UsersList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

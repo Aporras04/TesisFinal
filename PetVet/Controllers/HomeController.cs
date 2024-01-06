@@ -72,5 +72,20 @@ namespace PetVet.Controllers
         {
             return View();
         }
+
+        public ActionResult UserProfile()
+        {
+            return View();
+        }
+
+        public ActionResult DocVets()
+        {
+            return View();
+        }
+
+        public ActionResult UsersList()
+        {
+            return View();
+        }
     }
 }
