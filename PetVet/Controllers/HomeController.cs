@@ -36,6 +36,21 @@ namespace PetVet.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult SignIn(Usuario user)
+        {
+            try
+            {
+                db.Usuarios.Add(user);
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return View();
+        }
+
         public ActionResult LogIn()
         {
             ViewBag.Message = "Your contact page.";

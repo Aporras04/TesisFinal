@@ -11,9 +11,10 @@ namespace PetVet.Data
         public PetVetContext() : base("PetVetDB")
         {
             //base.Configuration.LazyLoadingEnabled = false;
+            Database.SetInitializer(new PetVetDbContextInitializer());
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<PetVetContext, Migrations.Configuration>());
 
-            Database.SetInitializer(new PetVetDbContextInitializer());
+            
         }
 
         // DbSet para cada entidad en tu modelo
@@ -23,15 +24,15 @@ namespace PetVet.Data
         public DbSet<Mascota> Mascotas { get; set; }
         public DbSet<Tratamiento> Tratamientos { get; set; }
 
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<Doctor>().ToTable("Doctor");
-        //    modelBuilder.Entity<Veterinaria>().ToTable("Veterinaria");
-        //    modelBuilder.Entity<Usuario>().ToTable("Usuario");
-        //    modelBuilder.Entity<Mascota>().ToTable("Mascota");
-        //    modelBuilder.Entity<Tratamiento>().ToTable("Tratamiento");
-        //    base.OnModelCreating(modelBuilder);
-        //}
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Doctor>().ToTable("Doctor");
+            modelBuilder.Entity<Veterinaria>().ToTable("Veterinaria");
+            modelBuilder.Entity<Usuario>().ToTable("Usuario");
+            modelBuilder.Entity<Mascota>().ToTable("Mascota");
+            modelBuilder.Entity<Tratamiento>().ToTable("Tratamiento");
+            base.OnModelCreating(modelBuilder);
+        }
     }
 
     public class PetVetDbContextInitializer : CreateDatabaseIfNotExists<PetVetContext>
