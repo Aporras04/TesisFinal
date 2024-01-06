@@ -41,14 +41,21 @@ namespace PetVet.Controllers
         {
             try
             {
-                db.Usuarios.Add(user);
+                if (ModelState.IsValid)
+                {
+                    db.Usuarios.Add(user);
+                    db.SaveChanges();
+                }
+                    
             }
             catch (Exception ex)
             {
-
+                ModelState.AddModelError("", "Unable to save changes. " +
+           "Try again, and if the problem persists " +
+           "see your system administrator.");
             }
 
-            return View();
+            return View(user);
         }
 
         public ActionResult LogIn()

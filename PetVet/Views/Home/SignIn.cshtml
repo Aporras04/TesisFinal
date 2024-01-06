@@ -1,7 +1,7 @@
 ﻿@{
     ViewBag.Title = "About";
 }
-
+@model PetVet.Models.Usuario
 <style>
 
     body {
@@ -12,45 +12,64 @@
         max-width: 100%;
     }
 </style>
+@using (Html.BeginForm())
+{
+    <div class="total-height d-flex" style="">
+        <div class="width-50 center-content" style="background-color: rgb(220, 199, 170, .4); width:50%;">
+            <div id="login-form" style="display:flex; justify-content:center; flex-direction:column; text-align:center; width:60%;">
+                <form style="">
+                    <div class="mb-2 fs-2 weight-600">Bienvenido</div>
+                    <div class="text-start">
+                        <div class="weight-600">Nombre</div>
+                        @Html.TextBoxFor(model => model.Nombre, new { @class = "width-100 input-inicio" })
+                        @Html.ValidationMessageFor(model => model.Nombre)
+                        @*<input class="width-100 input-inicio" required />*@
+                    </div>
+                    <div class="text-start">
+                        <div class="weight-600">Cedula</div>
+                        @Html.TextBoxFor(model => model.Cedula, new { @class = "width-100 input-inicio" })
+                        @Html.ValidationMessageFor(model => model.Cedula)
+                        @*<input class="width-100 input-inicio" required />*@
+                    </div>
+                    <div class="text-start">
+                        <div class="weight-600">Direccion</div>
+                        @Html.TextBoxFor(model => model.Direccion, new { @class = "width-100 input-inicio" })
+                        @Html.ValidationMessageFor(model => model.Direccion)
+                        @*<input class="width-100 input-inicio" required />*@
+                    </div>
+                    <div class="text-start">
+                        <div class="weight-600">Telefono</div>
+                        @Html.TextBoxFor(model => model.Telefono, new { @class = "width-100 input-inicio" })
+                        @Html.ValidationMessageFor(model => model.Telefono)
+                        @*<input class="width-100 input-inicio" required />*@
+                    </div>
+                    <div class="text-start mb-2">
+                        <div class="weight-600">Email</div>
+                        @Html.TextBoxFor(model => model.Mail, new { @class = "width-100 input-inicio" })
+                        @Html.ValidationMessageFor(model => model.Mail)
+                        @*<input class="width-100 input-inicio" required />*@
+                    </div>
+                    <div class="text-start mb-2">
+                        <div class="weight-600">Contraseña</div>
+                        @Html.TextBoxFor(model => model.Password, new { @class = "width-100 input-inicio" })
+                        @Html.ValidationMessageFor(model => model.Password)
+                        @*<input class="width-100 input-inicio" required />*@
+                    </div>
+                    <div class="mb-2">
+                        <button type="submit" class="btn-inicio">Registrarme</button>
+                    </div>
+                </form>
 
-<div class="total-height d-flex" style="">
-    <div class="width-50 center-content" style="background-color: rgb(220, 199, 170, .4); width:50%;">
-        <div id="login-form" style="display:flex; justify-content:center; flex-direction:column; text-align:center; width:60%;">
-            <form style="">
-                <div class="mb-2 fs-2 weight-600">Bienvenido</div>
-                <div class="text-start">
-                    <div class="weight-600">Nombre</div>
-                    <input class="width-100 input-inicio" required />
-                </div>
-                <div class="text-start">
-                    <div class="weight-600">Cedula</div>
-                    <input class="width-100 input-inicio" required />
-                </div>
-                <div class="text-start">
-                    <div class="weight-600">Direccion</div>
-                    <input class="width-100 input-inicio" required />
-                </div>
-                <div class="text-start">
-                    <div class="weight-600">Telefono</div>
-                    <input class="width-100 input-inicio" required />
-                </div>
-                <div class="text-start mb-2">
-                    <div class="weight-600">Email</div>
-                    <input class="width-100 input-inicio" required />
-                </div>
-                <div class="mb-2">
-                    <button type="submit" class="btn-inicio" onclick="">Registrarme</button>
-                </div>
-            </form>
-
+            </div>
+        </div>
+        <div class="width-50 img-container" style="width:50%;">
+            <div>
+                <img src="~/Content/img/Icono_blanco.png" />
+            </div>
+            <div>
+                <img width="90%" src="~/Content/img/portada.png" />
+            </div>
         </div>
     </div>
-    <div class="width-50 img-container" style="width:50%;">
-        <div>
-            <img src="~/Content/img/Icono_blanco.png" />
-        </div>
-        <div>
-            <img width="90%" src="~/Content/img/portada.png" />
-        </div>
-    </div>
-</div>
+}
+    

@@ -11,7 +11,7 @@ namespace PetVet.Data
         public PetVetContext() : base("PetVetDB")
         {
             //base.Configuration.LazyLoadingEnabled = false;
-            Database.SetInitializer(new PetVetDbContextInitializer());
+            //Database.SetInitializer(new PetVetDbContextInitializer());
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<PetVetContext, Migrations.Configuration>());
 
             

@@ -14,23 +14,33 @@ namespace PetVet.Models
 
         [Column(TypeName = "VARCHAR")]
         [StringLength(45)]
+        [Required]
         public string Nombre { get; set; }
 
         [Column(TypeName = "VARCHAR")]
         [StringLength(60)]
+        [Required]
         public string Direccion { get; set; }
 
         [Column(TypeName = "VARCHAR")]
-        [StringLength(10)]
+        [StringLength(10), MinLength(10), RegularExpression("([0-9]+)")]
+        [Required]
         public string Cedula { get; set; }
 
         [Column(TypeName = "VARCHAR")]
-        [StringLength(10)]
+        [StringLength(10,ErrorMessage ="hola"), MinLength(10, ErrorMessage = "hola2"), RegularExpression("([0-9]+)", ErrorMessage = "hola3")]
+        [Required]
         public string Telefono { get; set; }
 
         [Column(TypeName = "VARCHAR")]
         [StringLength(45)]
+        [Required]
         public string Mail { get; set; }
+
+        [Column(TypeName = "VARCHAR")]
+        [StringLength(45)]
+        [Required]
+        public string Password { get; set; }
 
         public ICollection<Mascota> Mascotas { get; set; }
     }
