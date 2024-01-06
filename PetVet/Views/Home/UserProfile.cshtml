@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewBag.Title = "UserProfile";
+}
+
+@*<div class="container">
+    <div style="text-align:center;"><h1>Mi perfil</h1></div>
+    <div class="mt-1">
+        <form>
+            <div class="form-group row mb-1">
+                <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="nombre" placeholder="">
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <label for="raza" class="col-sm-2 col-form-label">Cédula</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="raza" placeholder="">
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <label for="edad" class="col-sm-2 col-form-label">Dirección</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="edad" placeholder="">
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <label for="especie" class="col-sm-2 col-form-label">Teléfono</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="especie" placeholder="">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div style="margin-top:4rem;text-align:center;">
+        <button type="button" class="btn btn-warning">Editar</button>
+    </div>
+</div>*@
+
+<div class="container">
+    <div style="text-align:center;"><h1>Mi Perfil</h1></div>
+    <div class="mt-1">
+        <form>
+            <div style="display:flex; justify-content:space-evenly; margin-bottom:1rem;">
+                <div class="text-start">
+                    <div class="weight-600">Nombre</div>
+                    <input class="width-100 input-inicio" required />
+                </div>
+                <div class="text-start">
+                    <div class="weight-600">Cedula</div>
+                    <input class="width-100 input-inicio" required />
+                </div>
+            </div>
+            <div style="display: flex; justify-content: space-evenly; margin-bottom: 1rem;">
+                <div class="text-start">
+                    <div class="weight-600">Direccion</div>
+                    <input class="width-100 input-inicio" required />
+                </div>
+                <div class="text-start">
+                    <div class="weight-600">Telefono</div>
+                    <input class="width-100 input-inicio" required />
+                </div>
+            </div>
+            <div style="display: flex; justify-content: space-evenly; margin-bottom: 1rem;">
+                <div class="text-start">
+                    <div class="weight-600">Email</div>
+                    <input class="width-100 input-inicio" style="width:270px;" required />
+                </div>
+            </div>
+
+            <div style="margin-top:4rem; display:flex; justify-content:space-evenly;">
+                <div>
+                    <button type="button" class="btn btn-warning">Guardar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
