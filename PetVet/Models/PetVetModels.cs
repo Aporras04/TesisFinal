@@ -13,33 +13,33 @@ namespace PetVet.Models
         public int UsuarioID { get; set; }
 
         [Column(TypeName = "VARCHAR")]
-        [StringLength(45)]
-        [Required]
+        [StringLength(45, ErrorMessage ="Maximo 45 caracteres"), MinLength(10, ErrorMessage = "Minimo 10 caracteres")]
+        [Required(ErrorMessage = "Camop requerido")]
         public string Nombre { get; set; }
 
         [Column(TypeName = "VARCHAR")]
-        [StringLength(60)]
-        [Required]
+        [StringLength(60, ErrorMessage = "Maximo 60 caracteres"), MinLength(5, ErrorMessage = "Minimo 5 caracteres")]
+        [Required(ErrorMessage = "Camop requerido")]
         public string Direccion { get; set; }
 
         [Column(TypeName = "VARCHAR")]
-        [StringLength(10), MinLength(10), RegularExpression("([0-9]+)")]
-        [Required]
+        [StringLength(10, ErrorMessage = "Maximo 10 caracteres"), MinLength(10, ErrorMessage = "Minimo 10 caracteres"), RegularExpression("([0-9]+)", ErrorMessage = "Ingresar solo numeros")]
+        [Required(ErrorMessage = "Camop requerido")]
         public string Cedula { get; set; }
 
         [Column(TypeName = "VARCHAR")]
-        [StringLength(10,ErrorMessage ="hola"), MinLength(10, ErrorMessage = "hola2"), RegularExpression("([0-9]+)", ErrorMessage = "hola3")]
-        [Required]
+        [StringLength(10,ErrorMessage ="Maximo 10 caracteres"), MinLength(10, ErrorMessage = "Minimo 10 caracteres"), RegularExpression("([0-9]+)", ErrorMessage = "Ingresar solo numeros")]
+        [Required(ErrorMessage = "Camop requerido")]
         public string Telefono { get; set; }
 
         [Column(TypeName = "VARCHAR")]
-        [StringLength(45)]
-        [Required]
+        [RegularExpression(@"^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$", ErrorMessage = "Correo no valido")]
+        [Required(ErrorMessage = "Camop requerido")]
         public string Mail { get; set; }
 
         [Column(TypeName = "VARCHAR")]
-        [StringLength(45)]
-        [Required]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$", ErrorMessage ="Contrasena invalida")]
+        [Required(ErrorMessage = "Camop requerido")]
         public string Password { get; set; }
 
         public ICollection<Mascota> Mascotas { get; set; }
@@ -51,29 +51,36 @@ namespace PetVet.Models
         public int MascotaID { get; set; }
 
         [Column(TypeName = "VARCHAR")]
-        [StringLength(45)]
+        [StringLength(45, ErrorMessage = "Maximo 45 caracteres"), MinLength(2, ErrorMessage = "Minimo 2 caracteres")]
+        [Required(ErrorMessage = "Campo requerido")]
         public string Nombre { get; set; }
 
         [Column(TypeName = "VARCHAR")]
-        [StringLength(45)]
+        [StringLength(20, ErrorMessage = "Maximo 20 caracteres")]
+        [Required(ErrorMessage = "Campo requerido")]
         public string Especie { get; set; }
 
         [Column(TypeName = "VARCHAR")]
-        [StringLength(45)]
+        [StringLength(20, ErrorMessage = "Maximo 20 caracteres")]
+        [Required(ErrorMessage = "Campo requerido")]
         public string Raza { get; set; }
 
         [Column(TypeName = "VARCHAR")]
-        [StringLength(2)]
+        [StringLength(10, ErrorMessage = "Maximo 10 caracteres")]
+        [Required(ErrorMessage = "Campo requerido")]
         public string Edad { get; set; }
 
         [Column(TypeName = "VARCHAR")]
-        [StringLength(1)]
+        [StringLength(6, ErrorMessage = "Maximo 6 caracteres")]
+        [Required(ErrorMessage = "Campo requerido")]
         public string Sexo { get; set; }
 
         [Column(TypeName = "VARCHAR")]
-        [StringLength(10)]
+        [StringLength(10, ErrorMessage = "Maximo 10 caracteres")]
+        [Required(ErrorMessage = "Campo requerido")]
         public string Color { get; set; }
 
+        [Required(ErrorMessage = "Campo requerido")]
         public bool Esterilizado { get; set; }
         public ICollection<Veterinaria> Veterinarias { get; set; }
         public ICollection<Tratamiento> Tratamientos { get; set; }

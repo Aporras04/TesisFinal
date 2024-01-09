@@ -3,60 +3,83 @@
     ViewBag.Title = "NewPet";
 }
 
-<div class="container">
-    <div style="text-align:center;"><h1>Nueva Mascota</h1></div>
-    <div class="mt-1">
-        <form>
-            <div style="display:flex; justify-content:space-evenly; margin-bottom:1rem;">
-                <div class="text-start">
-                    <div class="weight-600">Nombre</div>
-                    <input class="width-100 input-inicio" required />
+@model PetVet.Models.Mascota
+
+@using (Html.BeginForm())
+{
+    <div class="container">
+        <div style="text-align:center;"><h1>Nueva Mascota</h1></div>
+        <div class="mt-1">
+            <form>
+                <div style="display:flex; justify-content:space-evenly; margin-bottom:1rem;">
+                    <div class="text-start">
+                        <div class="weight-600">Nombre</div>
+                        @Html.TextBoxFor(model => model.Nombre, new { @class = "width-100 input-inicio" })
+                        @Html.ValidationMessageFor(model => model.Nombre)
+                        @*<input class="width-100 input-inicio" required />*@
+                    </div>
+                    <div class="text-start">
+                        <div class="weight-600">Raza</div>
+                        @Html.TextBoxFor(model => model.Raza, new { @class = "width-100 input-inicio" })
+                        @Html.ValidationMessageFor(model => model.Raza)
+                        @*<input class="width-100 input-inicio" required />*@
+                    </div>
                 </div>
-                <div class="text-start">
-                    <div class="weight-600">Raza</div>
-                    <input class="width-100 input-inicio" required />
+                <div style="display: flex; justify-content: space-evenly; margin-bottom: 1rem;">
+                    <div class="text-start">
+                        <div class="weight-600">Edad</div>
+                        @Html.TextBoxFor(model => model.Edad, new { @class = "width-100 input-inicio" })
+                        @Html.ValidationMessageFor(model => model.Edad)
+                        @*<input class="width-100 input-inicio" required />*@
+                    </div>
+                    <div class="text-start">
+                        <div class="weight-600">Especie</div>
+                        @Html.TextBoxFor(model => model.Especie, new { @class = "width-100 input-inicio" })
+                        @Html.ValidationMessageFor(model => model.Especie)
+                        @*<input class="width-100 input-inicio" required />*@
+                    </div>
                 </div>
-            </div>
-            <div style="display: flex; justify-content: space-evenly; margin-bottom: 1rem;">
-                <div class="text-start">
-                    <div class="weight-600">Edad</div>
-                    <input class="width-100 input-inicio" required />
+                <div style="display: flex; justify-content: space-evenly; margin-bottom: 1rem;">
+                    <div class="text-start">
+                        <div class="weight-600">Sexo</div>
+                        @Html.TextBoxFor(model => model.Sexo, new { @class = "width-100 input-inicio" })
+                        @Html.ValidationMessageFor(model => model.Sexo)
+                        @*<input class="width-100 input-inicio" required />*@
+                    </div>
+                    <div class="text-start">
+                        <div class="weight-600">Color</div>
+                        @Html.TextBoxFor(model => model.Color, new { @class = "width-100 input-inicio" })
+                        @Html.ValidationMessageFor(model => model.Color)
+                        @*<input class="width-100 input-inicio" required />*@
+                    </div>
                 </div>
-                <div class="text-start">
-                    <div class="weight-600">Especie</div>
-                    <input class="width-100 input-inicio" required />
+                <div style="display: flex; justify-content: space-evenly; margin-bottom: 1rem;">
+                    <div class="text-start">
+                        <div class="weight-600">Esterilizado</div>
+                        @Html.TextBoxFor(model => model.Esterilizado, new { @class = "width-100 input-inicio" })
+                        @Html.ValidationMessageFor(model => model.Esterilizado)
+                        @*<input class="width-100 input-inicio" required />*@
+                    </div>
+                    <div class="text-start">
+                        <div class="weight-600">Vetrinaria</div>
+                        @Html.TextBoxFor(model => model.Veterinarias, new { @class = "width-100 input-inicio" })
+                        @Html.ValidationMessageFor(model => model.Veterinarias)
+                        @*<input class="width-100 input-inicio" required />*@
+                    </div>
                 </div>
-            </div>
-            <div style="display: flex; justify-content: space-evenly; margin-bottom: 1rem;">
-                <div class="text-start">
-                    <div class="weight-600">Sexo</div>
-                    <input class="width-100 input-inicio" required />
+
+                <div style="margin-top:4rem; display:flex; justify-content:space-evenly;">
+                    @*<div>
+                            <button type="button" class="btn btn-secondary">Cancelar</button>
+                        </div>*@
+                    <div>
+                        <button type="button" class="btn btn-warning">Crear Mascota</button>
+                    </div>
                 </div>
-                <div class="text-start">
-                    <div class="weight-600">Color</div>
-                    <input class="width-100 input-inicio" required />
-                </div>
-            </div>
-            <div style="display: flex; justify-content: space-evenly; margin-bottom: 1rem;">
-                <div class="text-start">
-                    <div class="weight-600">Esterilizado</div>
-                    <input class="width-100 input-inicio" required />
-                </div>
-                <div class="text-start">
-                    <div class="weight-600">Vetrinaria</div>
-                    <input class="width-100 input-inicio" required />
-                </div>
-            </div>
-            
-            <div style="margin-top:4rem; display:flex; justify-content:space-evenly;">
-                @*<div>
-                    <button type="button" class="btn btn-secondary">Cancelar</button>
-                </div>*@
-                <div>
-                    <button type="button" class="btn btn-warning">Crear Mascota</button>
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
+
     </div>
-    
-</div>
+}
+
+
