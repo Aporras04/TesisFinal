@@ -62,8 +62,11 @@
                     </div>
                     <div class="text-start">
                         <div class="weight-600">Vetrinaria</div>
-                        @Html.TextBoxFor(model => model.Veterinarias, new { @class = "width-100 input-inicio" })
-                        @Html.ValidationMessageFor(model => model.Veterinarias)
+                        @if (ViewBag.Vets != null)
+                        {
+                            @Html.DropDownList("Veterinarias", (IEnumerable<SelectListItem>)ViewBag.Vets)
+                        }
+                        @Html.ValidationMessageFor(model => model.Veterinaria)
                         @*<input class="width-100 input-inicio" required />*@
                     </div>
                 </div>
@@ -73,7 +76,7 @@
                             <button type="button" class="btn btn-secondary">Cancelar</button>
                         </div>*@
                     <div>
-                        <button type="button" class="btn btn-warning">Crear Mascota</button>
+                        <button type="submit" class="btn btn-warning">Crear Mascota</button>
                     </div>
                 </div>
             </form>

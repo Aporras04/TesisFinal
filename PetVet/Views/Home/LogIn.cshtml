@@ -13,8 +13,8 @@
     }
 </style>
 
-@using (Html.BeginForm())
-{
+
+
     <div class="total-height d-flex" style="">
         <div class="width-50 center-content" style="background-color: rgb(220, 199, 170, .4); width:50%;">
             <div id="login-form" style="display:flex; justify-content:center; flex-direction:column; text-align:center; width:60%;">
@@ -55,5 +55,35 @@
             </div>
         </div>
     </div>
-}
 
+
+<script>
+    function IniciarSesion() {
+        var mail = $("#Mail").val();
+        var clave = $("#Password").val();
+
+        // Crear el objeto de datos a enviar
+        //var data = {
+        //    email: mail,
+        //    psswd: clave
+        //};
+
+        // Realizar la solicitud AJAX POST
+        $.ajax({
+            type: "POST",
+            url: "/Home/LogIn", // Ruta de tu endpoint
+            data: { email: mail, psswd: clave },           
+            
+            success: function (response) {
+                if (response.redirectUrl) {
+                    // Redirigir manualmente
+                    window.location.href = response.redirectUrl;
+                }
+            },
+            error: function (error) {
+                // Manejar el error
+                console.error(error);
+            }
+        });
+    }
+</script>

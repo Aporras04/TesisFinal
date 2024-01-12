@@ -38,7 +38,7 @@ namespace PetVet.Models
         public string Mail { get; set; }
 
         [Column(TypeName = "VARCHAR")]
-        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$", ErrorMessage ="Contrasena invalida")]
+        //[RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$", ErrorMessage ="Contrasena invalida")]
         [Required(ErrorMessage = "Camop requerido")]
         public string Password { get; set; }
 
@@ -80,11 +80,13 @@ namespace PetVet.Models
         [Required(ErrorMessage = "Campo requerido")]
         public string Color { get; set; }
 
+        [Column(TypeName = "VARCHAR")]
+        [StringLength(1, ErrorMessage = "Maximo 1 caracter")]
         [Required(ErrorMessage = "Campo requerido")]
-        public bool Esterilizado { get; set; }
-        public ICollection<Veterinaria> Veterinarias { get; set; }
+        public string Esterilizado { get; set; }
+        public int Veterinaria { get; set; }
         public ICollection<Tratamiento> Tratamientos { get; set; }
-        public Usuario Usuario { get; set; }
+        public int Usuario { get; set; }
     }
 
     public class Tratamiento

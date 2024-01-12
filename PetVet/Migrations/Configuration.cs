@@ -1,5 +1,6 @@
 ﻿namespace PetVet.Migrations
 {
+    using PetVet.Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -15,10 +16,22 @@
 
         protected override void Seed(PetVet.Data.PetVetContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            if (!context.Veterinarias.Any(v => v.VeterinariaID == 16))
+            {
+                context.Veterinarias.Add(new Veterinaria { VeterinariaID = 100, Nombre = "Clínica de Mascotas AmigoAnimal", Direccion = "Calle A" });
+            }
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method
-            //  to avoid creating duplicate seed data.
+            if (!context.Veterinarias.Any(v => v.VeterinariaID == 17))
+            {
+                context.Veterinarias.Add(new Veterinaria { VeterinariaID = 101, Nombre = "Clínica Veterinaria Animalia", Direccion = "Calle B" });
+            }
+
+            if (!context.Veterinarias.Any(v => v.VeterinariaID == 18))
+            {
+                context.Veterinarias.Add(new Veterinaria { VeterinariaID = 102, Nombre = "Hospital Veterinario PetCare", Direccion = "Calle C" });
+            }
+
+            context.SaveChanges();
         }
     }
 }
