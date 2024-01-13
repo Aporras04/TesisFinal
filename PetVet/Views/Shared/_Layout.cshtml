@@ -15,16 +15,23 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://kendo.cdn.telerik.com/2022.1.119/js/kendo.all.min.js"></script>
 </head>
-<body>
+
+<body style="height:100vh; padding-bottom:0;">
     <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: #F7882F !important; border-color:transparent;">
-        <div class="container">
+        <div style="display:flex; justify-content:space-between;">
             <div class="navbar-header">
+                <a href="@Url.Action("Index", "Home")">
+                    <img width="50px" src="/Content/img/Icono_pequeno_azul.png" />
+                </a>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @*<a href="/Home/Index.cshtml">
+                    <img width="50px" src="/Content/img/Icono_pequeno_azul.png" />
+                </a>*@
+                @*@Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -36,7 +43,7 @@
             </div>
         </div>
     </div>
-    <div class="">
+    <div style="height:100%;">
         @RenderBody()
         
     </div>
@@ -46,3 +53,20 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+
+<style>
+    ul > li > a{
+        color:white !important;
+    }
+
+    ul>li>a:hover{
+        border-bottom: 3px solid white;
+        padding-bottom:3px;
+    }
+
+    @@media(max-width:768px){
+        .navbar-header{
+            width:100%;
+        }
+    }
+</style>

@@ -7,15 +7,34 @@
     body {
         background-color: rgba(220, 199, 170, .25);
     }
+
+    #index-container {
+        text-align:center;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    @@media(min-width:900px){
+        #index-perros{
+            width:50% !important;
+        }
+
+        #index-logo{
+            width:20% !important;
+        }
+    }
+
+    
 </style>
-<div class="">
-    <div class="text-center">
-        <div>
-            <img src="~/Content/img/Icon.png" />
-        </div>
-        <div>
-            <img src="~/Content/img/portada.png" />
-        </div>
-        
+
+<div id="index-container">
+    <div>
+        <img id="index-logo" style="width:50%;" src="~/Content/img/Icon.png" />
     </div>
+    <div>
+        <img style="width:70%;" id="index-perros" src="~/Content/img/portada.png" />
+    </div>
+        
 </div>
