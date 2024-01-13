@@ -56,7 +56,6 @@ namespace PetVet.Models
         public string Nombre { get; set; }
 
         [Column(TypeName = "VARCHAR")]
-        [StringLength(20, ErrorMessage = "Maximo 20 caracteres")]
         [Required(ErrorMessage = "Campo requerido")]
         public string Especie { get; set; }
 
@@ -76,12 +75,11 @@ namespace PetVet.Models
         public string Sexo { get; set; }
 
         [Column(TypeName = "VARCHAR")]
-        [StringLength(10, ErrorMessage = "Maximo 10 caracteres")]
+        [StringLength(50, ErrorMessage = "Maximo 50 caracteres")]
         [Required(ErrorMessage = "Campo requerido")]
         public string Color { get; set; }
 
         [Column(TypeName = "VARCHAR")]
-        [StringLength(1, ErrorMessage = "Maximo 1 caracter")]
         [Required(ErrorMessage = "Campo requerido")]
         public string Esterilizado { get; set; }
         public int Veterinaria { get; set; }
@@ -93,7 +91,6 @@ namespace PetVet.Models
     {
         [Key]
         public int idTratamiento { get; set; }
-
         public DateTime Fecha { get; set; }
 
         [Column(TypeName = "VARCHAR")]
@@ -107,6 +104,7 @@ namespace PetVet.Models
 
         public Mascota Mascota { get; set; }
 
+        public string Veterinario { get; set; }
     }
 
     public class Veterinaria

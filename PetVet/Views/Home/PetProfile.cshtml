@@ -53,22 +53,34 @@
             width: 809px !important;
         }
     }
+
+    .btn-new-mas {
+        background-color: #F7C331;
+        color: white;
+        height: 40px;
+    }
 </style>
 
 <div id="perfil-container" class="container">
     <div style="text-align:center;"><h1>Candy</h1></div>
-    <div class="mt-1">
-        <div>Información:</div>
-        <div>
-            <div>Nombre: @Html.LabelFor(m => m.Nombre)</div>
-            <div>Edad: @Html.LabelFor(m => m.Edad)</div>
-            <div>Raza: @Html.LabelFor(m => m.Raza)</div>
-            <div>Especie: @Html.LabelFor(m => m.Especie)</div>
-            <div>Sexo: @Html.LabelFor(m => m.Sexo)</div>
-            <div>Esterilizado: @Html.LabelFor(m => m.Esterilizado)</div>
+    <div class="mt-1" style="margin-top:1rem;">
+        <div style="font-weight:600;">Información:</div>
+        <div style="font-weight:600; margin-left:1rem;">
+            <div >Nombre: <span style="font-weight:400;">@Model.Nombre</span></div>
+            <div>Edad: <span style="font-weight:400;">@Model.Edad</span></div>
+            <div>Raza: <span style="font-weight:400;">@Model.Raza</span></div>
+            <div>Especie: <span style="font-weight:400;">@Model.Especie</span></div>
+            <div>Sexo: <span style="font-weight:400;">@Model.Sexo</span></div>
+            <div>Esterilizado: <span style="font-weight:400;">@Model.Esterilizado</span></div>
         </div>
     </div>
-    <div class="mt-1">
+    <div class="mt-1" style="margin-top:1rem;">
+        <div style="margin-bottom:1rem; display:flex; justify-content:space-between;">
+            <div style="font-weight: 600;">Tratamientos:</div>
+            <div>
+                <button type="button" onclick="addNewMed()" class="btn btn-new-mas">Nuevo Tratamiento</button>
+            </div>
+        </div>
         <div id="tratamientos-grid"></div>
     </div>
 </div>
@@ -113,4 +125,8 @@
         sortable: true,
         filterable: true
     });
+
+    function addNewMed() {
+        window.location.href = "@Html.Raw(@Url.Action("NewMed", "Home"))";
+    }
 </script>

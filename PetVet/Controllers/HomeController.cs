@@ -45,7 +45,6 @@ namespace PetVet.Controllers
             return Json(pets);
         }
 
-
         public JsonResult GetVeterinarias()
         {
 
@@ -65,7 +64,6 @@ namespace PetVet.Controllers
             }
             return Json(error);
         }
-
 
         public ActionResult Index()
         {
@@ -194,6 +192,26 @@ namespace PetVet.Controllers
                     db.Mascotas.Add(pet);
                     db.SaveChanges();
                 }
+                else
+                {
+                    List<SelectListItem> files = new List<SelectListItem>();
+
+                    List<Veterinaria> vets = new List<Veterinaria>();
+
+                    vets = db.Veterinarias.ToList();
+
+
+                    foreach (var vet in vets)
+                    {
+                        files.Add(new SelectListItem
+                        {
+                            Text = vet.Nombre,
+                            Value = vet.VeterinariaID.ToString()
+                        });
+                    }
+                    ViewBag.Vets = files;
+                    return View(pet);
+                }
 
             }
             catch (Exception ex)
@@ -228,13 +246,11 @@ namespace PetVet.Controllers
         {
             Usuario user = new Usuario();
             
-            int id = 0;
             try
             {
-                if (ModelState.IsValid)
+                if(Session["UserInfo"] != null)
                 {
-                    user = db.Usuarios.Where(i => i.UsuarioID == id).FirstOrDefault();
-                    
+                    user = JsonConvert.DeserializeObject<Usuario>(Session["UserInfo"].ToString());
                 }
 
             }
@@ -243,6 +259,29 @@ namespace PetVet.Controllers
                 ModelState.AddModelError("", "Unable to save changes.");
             }
             return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult UserProfile(Usuario user)
+        {
+            try
+            {
+                var userdb = db.Usuarios.Find(user.UsuarioID);
+                if (userdb != null)
+                {
+                    userdb.Nombre = user.Nombre;
+                    userdb.Cedula = user.Cedula;
+                    userdb.Direccion = user.Direccion;
+                    userdb.Telefono = user.Telefono;
+                    db.SaveChanges();
+                    Session["UserInfo"] = JsonConvert.SerializeObject(userdb);
+                }
+            }catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            return View(user);
+
         }
 
         public ActionResult DocVets()
@@ -268,6 +307,11 @@ namespace PetVet.Controllers
                 ModelState.AddModelError("", "Unable to save changes.");
             }
             return View(users);
+        }
+
+        public ActionResult NewMed()
+        {
+            return View();
         }
     }
 }

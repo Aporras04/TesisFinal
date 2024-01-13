@@ -11,14 +11,34 @@
     input {
         max-width: 100%;
     }
+
+    .btn-inicio:hover {
+        border-color: rgb(107, 122, 143, .4) !important;
+    }
+
+    .input-inicio {
+        border-radius: 8px;
+        height: 30px;
+        border-width: 1px;
+    }
+
+    @@media(max-width:600px) {
+        #container-imagenes {
+            display: none;
+        }
+
+        #signup-form-container {
+            width: 100% !important;
+        }
+    }
 </style>
 @using (Html.BeginForm())
 {
     <div class="total-height d-flex" style="">
-        <div class="width-50 center-content" style="background-color: rgb(220, 199, 170, .4); width:50%;">
+        <div id="signup-form-container" class="width-50 center-content" style="background-color: rgb(220, 199, 170, .4); width:50%;">
             <div id="login-form" style="display:flex; justify-content:center; flex-direction:column; text-align:center; width:60%;">
                 <form style="">
-                    <div class="mb-2 fs-2 weight-600">Bienvenido</div>
+                    <div class="mb-2 weight-600" style="font-size:2rem;">Bienvenido</div>
                     <div class="text-start">
                         <div class="weight-600">Nombre</div>
                         @Html.TextBoxFor(model => model.Nombre, new { @class = "width-100 input-inicio" })
@@ -56,13 +76,13 @@
                         @*<input class="width-100 input-inicio" required />*@
                     </div>
                     <div class="mb-2">
-                        <button type="submit" class="btn-inicio">Registrarme</button>
+                        <button style="background-color:#D9D9D9; border-color:transparent;" type="submit" class="btn-inicio">Registrarme</button>
                     </div>
                 </form>
 
             </div>
         </div>
-        <div class="width-50 img-container" style="width:50%;">
+        <div id="container-imagenes" class="width-50 img-container" style="width:50%;">
             <div>
                 <img src="~/Content/img/Icono_blanco.png" />
             </div>

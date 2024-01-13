@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewBag.Title = "NewMed";
+}
+
+@model PetVet.Models.Tratamiento
+
+<style>
+    form {
+        height: 100%;
+    }
+</style>
+
+<div style="height:100%;">
+    @using (Html.BeginForm())
+    {
+        <div class="width-50 center-content" style="background-color: rgb(220, 199, 170, .4); flex-direction:column; height:100%">
+            <div style="text-align:center;"><h1 style="font-size: 2rem;">Nuevo Tratamiento</h1></div>
+            <div class="mt-1" style="display:flex; justify-content:center; flex-direction:column; text-align:center;">
+                <form style="height:100%;">
+                    @*@Html.HiddenFor(model => model.UsuarioID)*@
+                    <div class="text-start">
+                        <div class="weight-600">Nombre</div>
+                        @Html.TextBoxFor(model => model.Mascota.Nombre, new { @class = "width-100 input-inicio" })
+                        @Html.ValidationMessageFor(model => model.Mascota.Nombre)
+                        @*<input class="width-100 input-inicio" required />*@
+                    </div>
+                    <div class="text-start">
+                        <div class="weight-600">Edad</div>
+                        @Html.TextBoxFor(model => model.Mascota.Edad, new { @class = "width-100 input-inicio" })
+                        @Html.ValidationMessageFor(model => model.Mascota.Edad)
+                        @*<input class="width-100 input-inicio" required />*@
+                    </div>
+                    <div class="text-start">
+                        <div class="weight-600">Fecha actual</div>
+                        @Html.TextBoxFor(model => model.Fecha, new { @class = "width-100 input-inicio" })
+                        @Html.ValidationMessageFor(model => model.Fecha)
+                    </div>
+                    <div class="text-start">
+                        <div class="weight-600">Peso</div>
+                        @Html.TextBoxFor(model => model.PesoMascota, new { @class = "width-100 input-inicio" })
+                        @Html.ValidationMessageFor(model => model.PesoMascota)
+                    </div>
+                    <div class="text-start">
+                        <div class="weight-600">Tratamiento</div>
+                        @Html.TextAreaFor(model => model.Descripcion, new { @class = "width-100 input-inicio" })
+                        @Html.ValidationMessageFor(model => model.Descripcion)
+                    </div>
+                    <div class="text-start">
+                        <div class="weight-600">Veterinario</div>
+                        @Html.TextBoxFor(model => model.Veterinario, new { @class = "width-100 input-inicio" })
+                        @Html.ValidationMessageFor(model => model.Veterinario)
+                    </div>
+                    <div class="text-start">
+                        <div class="weight-600">Proxima Cita</div>
+                        @Html.TextBoxFor(model => model.FechaProxima, new { @class = "width-100 input-inicio" })
+                        @Html.ValidationMessageFor(model => model.FechaProxima)
+                    </div>
+
+                    <div style="margin-top:4rem; display:flex; justify-content:space-evenly;">
+                        <div>
+                            <button type="submit" class="btn btn-warning">Guardar Tratamiento</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+    }
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        var inputs = $(".input-inicio");
+        var btn = $(".btn-warning");
+
+        inputs.on('input', function () {
+            btn.prop('disabled', false);
+        });
+    })
+</script>
+

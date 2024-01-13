@@ -58,7 +58,7 @@
 </div>
 
 <script type="text/x-kendo-template" id="template">
-    <div class="card pet-card" onclick="goToPet()">
+    <div class="card pet-card" onclick="goToPet(#=MascotaID#)">
         <div style="height:5rem;">
             <img class="mascota-img" src="/Content/img/#:Especie#.png" />
         </div>
@@ -95,8 +95,11 @@
         pageable: false
     });
 
-    function goToPet() {
-        window.location.href = "@Html.Raw(Url.Action("PetProfile", "Home"))";
+    function goToPet(mid) {
+        var url = '@Url.Action("PetProfile", "Home")?id=' + mid;
+        window.location.href = url;
+        @*window.location.href = "@Html.Raw(@Url.Action("PetProfile", "Home"))";
+        link = "@Html.Raw(@Url.Action("PetProfile", "Home", new { id = "_key" }))";*@
     }
 
     function nuevaMascota() {

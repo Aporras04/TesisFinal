@@ -182,6 +182,7 @@
     <Content Include="Views\Home\UserProfile.cshtml" />
     <Content Include="Views\Home\DocVets.cshtml" />
     <Content Include="Views\Home\UsersList.cshtml" />
+    <Content Include="Views\Home\NewMed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

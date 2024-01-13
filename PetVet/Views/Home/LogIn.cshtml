@@ -11,15 +11,39 @@
     input {
         max-width: 100%;
     }
+
+    #crear-cuenta {
+        color: #F7882F;
+        font-weight:600;
+    }
+
+    .btn-inicio:hover {
+        border-color: rgb(107, 122, 143, .4) !important;
+    }
+
+    .input-inicio {
+        border-radius: 8px;
+        height: 30px;
+        border-width: 1px;
+    }
+
+    @@media(max-width:600px) {
+        #container-imagenes{
+            display:none;
+        }
+
+        #login-form-container{
+            width:100% !important;
+        }
+    }
 </style>
 
 
-
     <div class="total-height d-flex" style="">
-        <div class="width-50 center-content" style="background-color: rgb(220, 199, 170, .4); width:50%;">
+        <div id="login-form-container" class="center-content" style="background-color: rgb(220, 199, 170, .4); width:50%;">
             <div id="login-form" style="display:flex; justify-content:center; flex-direction:column; text-align:center; width:60%;">
                 <div style="">
-                    <div class="mb-4 fs-2 weight-600">Bienvenido</div>
+                    <div class="mb-4 weight-600" style="font-size:2rem;">Bienvenido</div>
                     <div class="text-start mb-2">
                         <div class="weight-600">Email</div>
                         @Html.TextBoxFor(model => model.Mail, new { @class = "width-100 input-inicio" })
@@ -32,21 +56,21 @@
                         @Html.ValidationMessageFor(model => model.Password)
                         @*<input class="width-100 input-inicio" />*@
                     </div>
-                    <div class="text-end mb-2 fs-08">
+                    <div class="text-end mb-2" style="font-size:12px;">
                         <span>Olvidaste la contraseña?</span>
                     </div>
                     <div class="mb-2">
-                        <button class="btn-inicio" onclick="IniciarSesion()">Iniciar Sesión</button>
+                        <button style="background-color:#D9D9D9; border-color:transparent;" class="btn-inicio" onclick="IniciarSesion()">Iniciar Sesión</button>
                     </div>
-                    <div class="d-flex fs-08 flex-column">
+                    <div class="d-flex" style="font-size:10px;flex-direction:column;">
                         <div>Nuevo en PetVet?</div>
-                        <div><a>Crear Cuenta</a></div>
+                        <div><a id="crear-cuenta" href="@Url.Action("SignIn", "Home")">Crear Cuenta</a></div>
                     </div>
                 </div>
 
             </div>
         </div>
-        <div class="width-50 img-container" style="width:50%;">
+        <div id="container-imagenes" class="width-50 img-container" style="width:50%;">
             <div>
                 <img src="~/Content/img/Icono_blanco.png" />
             </div>
