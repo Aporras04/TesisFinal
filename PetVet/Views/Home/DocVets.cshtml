@@ -9,7 +9,7 @@
         <div></div>
     </div>
 
-    <div id="vet-list"></div>
+    <div style="width:100%; margin-right:auto; margin-left:auto" id="vet-list"></div>
 
     <div style="margin-top:4rem;text-align:center;">
         <button type="button" class="btn btn-new-mas">Nueva Veterinaria</button>
@@ -17,20 +17,27 @@
 </div>
 
 <script type="text/x-kendo-template" id="template">
-    <button class="card" style="width:auto; border:1px solid; text-align:center;height:fit-content; margin-bottom:1rem; padding:1rem 0; border-radius:8px; background-color:white;">
-        <div class="card-body">
-            <h3>#:name#</h3>
-        </div>
-    </button>
+    <div style="width:100%; display:flex; justify-content:center;">
+        <button onclick="goToUsers()" class="card vet-card" style="width:500px; border:1px solid; text-align:center;height:fit-content; margin-bottom:1rem; padding:1rem 0; border-radius:8px; background-color:white;">
+            <div class="card-body">
+                <h3>#:Nombre#</h3>
+                <div style="margin-top:1rem;">
+                    <p style="margin-bottom:0;">#=Direccion#</p>
+                    <p>#=Telefono#</p>
+                </div>
+            </div>
+        </button>
+    </div>
+
 </script>
 
 <script>
 var mascotas = [
-    { id: 1, name: "Clínica de Mascotas AmigoAnimal" },
-    { id: 2, name: "Clínica Veterinaria Animalia" },
-    { id: 3, name: "Hospital Veterinario PetCare" },
-    { id: 4, name: "Centro Veterinario Paws & Claws" },
-    { id: 5, name: "Consultorio Veterinario VetVida" }
+    { id: 1, Nombre: "Clínica de Mascotas AmigoAnimal", Direccion: "Bakker 2", Telefono: "2812799" },
+    { id: 2, Nombre: "Clínica Veterinaria Animalia", Direccion: "El Condado", Telefono: "2812799" },
+    { id: 3, Nombre: "Hospital Veterinario PetCare", Direccion: "Barrio Nuevo", Telefono: "2812799" },
+    { id: 4, Nombre: "Centro Veterinario Paws & Claws", Direccion: "Tumbaco", Telefono: "2812799" },
+    { id: 5, Nombre: "Consultorio Veterinario VetVida", Direccion: "El Bosque", Telefono: "2812799" }
     ];
 
     $("#vet-list").kendoListView({
@@ -39,7 +46,12 @@ var mascotas = [
         },
         template: kendo.template($("#template").html()),
         pageable: false,
-    });</script>
+    });
+
+    function goToUsers() {
+        window.location.href = "@Html.Raw(Url.Action("UsersList", "Home"))";
+    }
+</script>
 
 <style>
 
@@ -67,6 +79,14 @@ var mascotas = [
         width: 30%;
         color: white;
         height: 40px;
+    }
+
+    .vet-card:hover {
+        border: 1px solid #F7882F !important;
+    }
+
+    .vet-card:active {
+        background-color: #F7882F !important;
     }
 </style>
 

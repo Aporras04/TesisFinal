@@ -15,14 +15,15 @@
 </div>
 
 <script type="text/x-kendo-template" id="template">
-    <button class="card" style="width:auto; border:1px solid; text-align:center;height:fit-content; margin-bottom:1rem; padding:1rem 0; border-radius:8px; background-color:white;">
+    <button onclick="goToPets()" class="card user-card" style="width:auto; border:1px solid; text-align:center;height:fit-content; margin-bottom:1rem; padding:1rem 0; border-radius:8px; background-color:white;">
         <div class="card-body">
             <h3>#:name#</h3>
         </div>
     </button>
 </script>
 
-<script>var mascotas = [
+<script>
+var mascotas = [
     { id: 1, name: "Usuario 1" },
     { id: 2, name: "Usuario 1" },
     { id: 3, name: "Usuario 1" },
@@ -40,7 +41,14 @@
         },
         template: kendo.template($("#template").html()),
         pageable: false
-    });</script>
+    });
+
+    function goToPets(petid) {
+        @*window.location.href = "@Html.Raw(Url.Action("Pets", "Home"))";
+        var url = '@Url.Action("Pets", "Home")?id=' + petid;
+        window.location.href = url;*@
+    }
+</script>
 
 <style>
 
@@ -68,6 +76,14 @@
         width: 30%;
         color: white;
         height: 40px;
+    }
+
+    .user-card:hover {
+        border: 1px solid #F7882F !important;
+    }
+
+    .user-card:active {
+        background-color: #F7882F !important;
     }
 </style>
 

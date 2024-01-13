@@ -18,6 +18,8 @@ namespace PetVet
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(name: "Logout", url: "Home/Logout", defaults: new { controller = "Home", action = "Logout" });
         }
     }
 }

@@ -34,13 +34,22 @@
 
                     @if (Session["UserInfo"] == null)
                     {
-                        <li>@Html.ActionLink("SignIn", "SignIn", "Home")</li>
-                        <li>@Html.ActionLink("LogIn", "LogIn", "Home")</li>
+                        <li>@Html.ActionLink("Crear Cuenta", "SignIn", "Home")</li>
+                        <li>@Html.ActionLink("Ingresar", "LogIn", "Home")</li>
                     }
                     else
                     {
-                        <li>@Html.ActionLink("Mis Mascotas", "Pets", "Home")</li>
+                        if (Session["UserType"].ToString() == "Vet")
+                        {
+                            <li>@Html.ActionLink("Veterinarias", "DocVets", "Home")</li>
+                        }
+                        else
+                        {
+                            <li>@Html.ActionLink("Mis Mascotas", "Pets", "Home")</li>
+
+                        }
                         <li>@Html.ActionLink("Perfil", "UserProfile", "Home")</li>
+                        <li>@Html.ActionLink("Cerrar Sesion", "Logout", "Home", null)</li>
                     }
 
                 </ul>

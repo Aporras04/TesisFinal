@@ -31,10 +31,14 @@
             width: 100% !important;
         }
     }
+
+    form{
+        height:100%;
+    }
 </style>
 @using (Html.BeginForm())
 {
-    <div class="total-height d-flex" style="">
+    <div class="d-flex" style="height:100%;">
         <div id="signup-form-container" class="width-50 center-content" style="background-color: rgb(220, 199, 170, .4); width:50%;">
             <div id="login-form" style="display:flex; justify-content:center; flex-direction:column; text-align:center; width:60%;">
                 <form style="">
@@ -43,40 +47,34 @@
                         <div class="weight-600">Nombre</div>
                         @Html.TextBoxFor(model => model.Nombre, new { @class = "width-100 input-inicio" })
                         @Html.ValidationMessageFor(model => model.Nombre)
-                        @*<input class="width-100 input-inicio" required />*@
                     </div>
                     <div class="text-start">
                         <div class="weight-600">Cedula</div>
                         @Html.TextBoxFor(model => model.Cedula, new { @class = "width-100 input-inicio" })
                         @Html.ValidationMessageFor(model => model.Cedula)
-                        @*<input class="width-100 input-inicio" required />*@
                     </div>
                     <div class="text-start">
                         <div class="weight-600">Direccion</div>
                         @Html.TextBoxFor(model => model.Direccion, new { @class = "width-100 input-inicio" })
                         @Html.ValidationMessageFor(model => model.Direccion)
-                        @*<input class="width-100 input-inicio" required />*@
                     </div>
                     <div class="text-start">
                         <div class="weight-600">Telefono</div>
                         @Html.TextBoxFor(model => model.Telefono, new { @class = "width-100 input-inicio" })
                         @Html.ValidationMessageFor(model => model.Telefono)
-                        @*<input class="width-100 input-inicio" required />*@
                     </div>
                     <div class="text-start mb-2">
                         <div class="weight-600">Email</div>
                         @Html.TextBoxFor(model => model.Mail, new { @class = "width-100 input-inicio" })
                         @Html.ValidationMessageFor(model => model.Mail)
-                        @*<input class="width-100 input-inicio" required />*@
                     </div>
                     <div class="text-start mb-2">
                         <div class="weight-600">Contraseña</div>
                         @Html.TextBoxFor(model => model.Password, new { @class = "width-100 input-inicio" })
                         @Html.ValidationMessageFor(model => model.Password)
-                        @*<input class="width-100 input-inicio" required />*@
                     </div>
                     <div class="mb-2">
-                        <button style="background-color:#D9D9D9; border-color:transparent;" type="submit" class="btn-inicio">Registrarme</button>
+                        <button onclick="loading()" style="background-color:#D9D9D9; border-color:transparent; position:relative;" type="submit" class="btn-inicio"><span class="btn-text">Registrarme</span></button>
                     </div>
                 </form>
 
@@ -93,3 +91,8 @@
     </div>
 }
     
+<script>
+    function loading() {
+
+    }
+</script>

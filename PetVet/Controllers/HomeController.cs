@@ -119,11 +119,14 @@ namespace PetVet.Controllers
                     Session["UserInfo"] = JsonConvert.SerializeObject(user);
                     if (user.Mail.Contains("vet"))
                     {
-
+                        var response = new { redirectUrl = Url.Action("DocVets") };
+                        Session["UserType"] = "Vet";
+                        return Json(response);
                     }
                     else
                     {
                         var response = new { redirectUrl = Url.Action("Pets") };
+                        Session["UserType"] = "User";
                         return Json(response);
                     }
                    
@@ -137,6 +140,19 @@ namespace PetVet.Controllers
             }
             return View(user);
             
+        }
+
+        public ActionResult Logout()
+        {
+            if (Session["UserInfo"] != null || Session["UserType"] != null)
+            {
+                Session["UserInfo"] = null;
+                Session["UserType"] = null;
+                
+            }
+
+            return RedirectToAction("LogIn");
+
         }
 
         public ActionResult Pets()

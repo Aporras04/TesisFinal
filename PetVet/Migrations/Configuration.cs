@@ -16,17 +16,17 @@
 
         protected override void Seed(PetVet.Data.PetVetContext context)
         {
-            if (!context.Veterinarias.Any(v => v.VeterinariaID == 16))
+            if (!context.Veterinarias.Any(v => v.Nombre == "Clínica de Mascotas AmigoAnimal"))
             {
                 context.Veterinarias.Add(new Veterinaria { VeterinariaID = 100, Nombre = "Clínica de Mascotas AmigoAnimal", Direccion = "Calle A" });
             }
 
-            if (!context.Veterinarias.Any(v => v.VeterinariaID == 17))
+            if (!context.Veterinarias.Any(v => v.Nombre == "Clínica Veterinaria Animalia"))
             {
                 context.Veterinarias.Add(new Veterinaria { VeterinariaID = 101, Nombre = "Clínica Veterinaria Animalia", Direccion = "Calle B" });
             }
 
-            if (!context.Veterinarias.Any(v => v.VeterinariaID == 18))
+            if (!context.Veterinarias.Any(v => v.Nombre == "Hospital Veterinario PetCare"))
             {
                 context.Veterinarias.Add(new Veterinaria { VeterinariaID = 102, Nombre = "Hospital Veterinario PetCare", Direccion = "Calle C" });
             }
