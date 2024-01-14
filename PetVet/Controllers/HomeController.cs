@@ -261,7 +261,9 @@ namespace PetVet.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    pet = db.Mascotas.Where(i => i.MascotaID == id).FirstOrDefault();                    
+                    pet = db.Mascotas.Where(i => i.MascotaID == id).FirstOrDefault();
+
+                    Session["PetInfo"] = JsonConvert.SerializeObject(pet);
                 }
 
             }
@@ -353,7 +355,51 @@ namespace PetVet.Controllers
 
         public ActionResult NewMed()
         {
+            
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult NewMed(Tratamiento tratamiento)
+        {
+            
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    if (Session["PetInfo"] != null)
+                    {
+                        //var userInfo = JsonConvert.DeserializeObject<Usuario>(Session["UserInfo"].ToString());
+                        var petInfo = JsonConvert.DeserializeObject<Mascota>(Session["PetInfo"].ToString());
+
+                        //Usuario usuario = db.Usuarios.Include(u => u.Mascotas).FirstOrDefault(u => u.UsuarioID == userInfo.UsuarioID);
+                        //Usuario usuario = db.Usuarios.Include(u => u.Mascotas.Select(m => m.Tratamientos)) .FirstOrDefault(u => u.UsuarioID == userInfo.UsuarioID);
+
+                        Mascota mascota = db.Mascotas.Include(u => u.Tratamientos).FirstOrDefault(i => i.MascotaID == petInfo.MascotaID);
+                        if (mascota != null)
+                        {
+                            tratamiento.Mascota = petInfo.MascotaID;
+                            mascota.Tratamientos.Add(tratamiento);
+                            db.SaveChanges();                            
+                        }
+                        //tratamiento.Mascota = petInfo.MascotaID;
+                        //usuario.Mascotas.Where(i => i.MascotaID == tratamiento.Mascota).FirstOrDefault().Tratamientos.Add(tratamiento);
+                        //db.SaveChanges();
+                        //Session["UserInfo"] = JsonConvert.SerializeObject(usuario);
+
+                        return RedirectToAction("PetProfile", new { id = mascota.MascotaID });
+
+                        //pet.Usuario = user.UsuarioID;                        
+                    }
+                    //db.Mascotas.Add(pet);
+                    //db.SaveChanges();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            return View(tratamiento);
         }
     }
 }

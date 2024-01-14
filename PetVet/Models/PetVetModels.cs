@@ -107,7 +107,7 @@ namespace PetVet.Models
 
         public DateTime FechaProxima { get; set; }
 
-        //public Mascota Mascota { get; set; }
+        public int Mascota { get; set; }
 
         public string NombreVeterinario { get; set; }
     }

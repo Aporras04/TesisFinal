@@ -15,6 +15,14 @@
         padding-right: 0 !important;
     }
 
+        .k-grid-header th {
+            padding: 1rem;
+        }
+
+    tbody tr td {
+        padding: 1rem;
+    }
+
     .k-grid-content {
         overflow-y: hidden;
         overflow-x: auto;
@@ -33,20 +41,22 @@
         display: none;
     }
 
-    /*.k-pager-numbers-wrap {
-        width: 75%;
-        text-align: end;
-        justify-content: flex-end;
-    }*/
-
-    /*.k-pager-numbers-wrap .k-dropdown{
-        border:0 !important
-    }*/
-
     .k-pager-wrap {
         display: flex;
+        padding: 1rem;
     }
 
+    .k-grid td {
+        border-color: transparent !important;
+    }
+
+    .k-alt {
+        background-color: transparent;
+    }
+
+    .k-header {
+        background-color: rgba(247, 136, 47, 0.5);
+    }
 
     @@media (min-width: 992px) {
         #perfil-container {
@@ -60,7 +70,6 @@
         height: 40px;
     }
 </style>
-
 <div id="perfil-container" class="container">
     <div style="text-align:center;"><h1>Candy</h1></div>
     <div class="mt-1" style="margin-top:1rem;">
@@ -86,27 +95,25 @@
 </div>
 
 <script>
-    var gridData = [
-        { nombre: "Candy", edad: "1 mes", fecha: "10 Dic 2023", peso: "10 Kl", tratamiento: "vacuna", doctor: "Roberto Lopez", cita: "01 Ene 2024" },
-        { nombre: "Candy", edad: "1 mes", fecha: "20 Dic 2023", peso: "20 Kl", tratamiento: "vacuna", doctor: "Roberto Lopez", cita: "01 Ene 2024" },
-        { nombre: "Candy", edad: "1 mes", fecha: "10 Dic 2023", peso: "5 Kl", tratamiento: "vacuna", doctor: "Roberto Lopez", cita: "01 Ene 2024" },
-        { nombre: "Candy", edad: "1 mes", fecha: "5 Dic 2023", peso: "10 Kl", tratamiento: "vacuna", doctor: "Roberto Lopez", cita: "01 Ene 2024" },
-        { nombre: "Candy", edad: "1 mes", fecha: "10 Dic 2023", peso: "20 Kl", tratamiento: "vacuna", doctor: "Roberto Lopez", cita: "01 Ene 2024" },
-        { nombre: "Candy", edad: "1 mes", fecha: "25 Dic 2023", peso: "5 Kl", tratamiento: "vacuna", doctor: "Roberto Lopez", cita: "01 Ene 2024" },
-    ];
-
+    //var gridData = [
+    //    { nombre: "Candy", edad: "1 mes", fecha: "10 Dic 2023", peso: "10 Kl", tratamiento: "vacuna", doctor: "Roberto Lopez", cita: "01 Ene 2024" },
+    //    { nombre: "Candy", edad: "1 mes", fecha: "20 Dic 2023", peso: "20 Kl", tratamiento: "vacuna", doctor: "Roberto Lopez", cita: "01 Ene 2024" },
+    //    { nombre: "Candy", edad: "1 mes", fecha: "10 Dic 2023", peso: "5 Kl", tratamiento: "vacuna", doctor: "Roberto Lopez", cita: "01 Ene 2024" },
+    //    { nombre: "Candy", edad: "1 mes", fecha: "5 Dic 2023", peso: "10 Kl", tratamiento: "vacuna", doctor: "Roberto Lopez", cita: "01 Ene 2024" },
+    //    { nombre: "Candy", edad: "1 mes", fecha: "10 Dic 2023", peso: "20 Kl", tratamiento: "vacuna", doctor: "Roberto Lopez", cita: "01 Ene 2024" },
+    //    { nombre: "Candy", edad: "1 mes", fecha: "25 Dic 2023", peso: "5 Kl", tratamiento: "vacuna", doctor: "Roberto Lopez", cita: "01 Ene 2024" },
+    //];
+    var gridData = @Html.Raw(Json.Encode(Model.Tratamientos));
     $("#tratamientos-grid").kendoGrid({
         dataSource: {
             data: gridData
         },
-        columns: [
-            { field: "nombre", title: "Nombre", width: 100 },
-            { field: "edad", title: "Edad", width: 100 },
-            { field: "fecha", title: "Fecha Revision", width: 150, sortable: { initialDirection: "desc" } },
-            { field: "peso", title: "Peso", width: 80 },
-            { field: "tratamiento", title: "Tratamiento", width: 200 },
-            { field: "doctor", title: "Veterinario", width: 120 },
-            { field: "cita", title: "Próxima Cita", width: 100 },
+        columns: [           
+            { field: "Fecha", title: "Fecha Revision", width: 140, sortable: { initialDirection: "desc" } },
+            { field: "PesoMascota", title: "Peso", width: 70 },
+            { field: "Descripcion", title: "Tratamiento", width: 190 },
+            { field: "NombreVeterinario", title: "Veterinario", width: 120 },
+            { field: "FechaProxima", title: "Próxima Cita", width: 100 },
         ],
         pageable: {
             pageSize: 10,

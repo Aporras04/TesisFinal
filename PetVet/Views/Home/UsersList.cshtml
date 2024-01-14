@@ -36,6 +36,7 @@
 //    ];
 
     var mascotas = @Html.Raw(Json.Encode(Model));
+    console.log("lista", mascotas);
     $("#usuario-list").kendoListView({
         dataSource: {
             data: mascotas
