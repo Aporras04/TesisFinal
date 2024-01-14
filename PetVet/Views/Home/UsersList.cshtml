@@ -1,40 +1,41 @@
 ﻿
-@{
-    ViewBag.Title = "UsersList";
-}
+
+
+@model List<PetVet.Models.Mascota>
 
 <div class="container">
     <div class="d-flex">
-        <div><h1>Veterinaria 1</h1></div>
+        <div><h1> @ViewBag.VetName</h1></div>
         <div></div>
     </div>
 
-    <div style="width: 100%; margin-right: auto; margin-left: auto;" id="usuario-list"></div>
+    <div id="usuario-list"></div>
 </div>
 
 <script type="text/x-kendo-template" id="template">
-    <div style="width:100%; display:flex; justify-content:center;">
-        <button onclick="goToPets()" class="card user-card" style="width:500px; border:1px solid; text-align:center;height:fit-content; margin-bottom:1rem; padding:1rem 0; border-radius:8px; background-color:white;">
-            <div style="margin-bottom:1rem;" class="card-body">
-                <h3>#=Nombre#</h3>
-            </div>
-            <div>
-                <p>#=Cedula#</p>
-                <p>#=Telefono#</p>
-                <p>#=Mail#</p>
-            </div>
-        </button>
+    <div class="card pet-card" onclick="goToPet(#=MascotaID#)">
+        <div style="height:5rem;">
+            <img class="mascota-img" src="/Content/img/#:Especie#.png" />
+        </div>
+
+        <div class="card-body">
+            <h3>#:Nombre#</h3>
+            <p>#:Edad#</p>
+            <p>#:NombreUsuario#</p>
+            <p>#:CedulaUsuario#</p>
+        </div>
     </div>
 </script>
 
 <script>
-var mascotas = [
-    { id: 1, Nombre: "Alejandro Torres", Cedula: "1584965236", Telefono: "09856231542", Mail:"ale.torres@gmail.com" },
-    { id: 2, Nombre: "Francisca Yepez", Cedula: "1485658548", Telefono: "09862344174", Mail: "yep_fran@hotmail.com" },
-    { id: 3, Nombre: "Carlos Zambrano", Cedula: "1526598749", Telefono: "0987456321", Mail: "carlos-zam09@outlook.com" },
-    { id: 4, Nombre: "Alicia Baez", Cedula: "1478523695", Telefono: "0986398752", Mail: "baezA8@yahoo.com" }
-    ];
+//var mascotas = [
+//    { id: 1, Nombre: "Alejandro Torres", Cedula: "1584965236", Telefono: "09856231542", Mail:"ale.torres@gmail.com" },
+//    { id: 2, Nombre: "Francisca Yepez", Cedula: "1485658548", Telefono: "09862344174", Mail: "yep_fran@hotmail.com" },
+//    { id: 3, Nombre: "Carlos Zambrano", Cedula: "1526598749", Telefono: "0987456321", Mail: "carlos-zam09@outlook.com" },
+//    { id: 4, Nombre: "Alicia Baez", Cedula: "1478523695", Telefono: "0986398752", Mail: "baezA8@yahoo.com" }
+//    ];
 
+    var mascotas = @Html.Raw(Json.Encode(Model));
     $("#usuario-list").kendoListView({
         dataSource: {
             data: mascotas
@@ -43,10 +44,10 @@ var mascotas = [
         pageable: false
     });
 
-    function goToPets(petid) {
-        @*window.location.href = "@Html.Raw(Url.Action("Pets", "Home"))";
-        var url = '@Url.Action("Pets", "Home")?id=' + petid;
-        window.location.href = url;*@
+    function goToPet(petid) {
+        @*window.location.href = "@Html.Raw(Url.Action("Pets", "Home"))";*@
+        var url = '@Url.Action("PetProfile", "Home")?id=' + petid;
+        window.location.href = url;
     }
 </script>
 
@@ -58,11 +59,36 @@ var mascotas = [
 
     .k-listview-content {
         display: flex;
-        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
     .card-body h3 {
         margin: 0;
+    }
+
+    .mascota-img {
+        width: 30%;
+    }
+
+    #mascotas-list {
+    padding: 1rem;
+    border: none;
+    background-color: transparent;
+}
+
+    .pet-card {
+        width: 18rem;
+        text-align: center;
+        height: fit-content;
+        margin-bottom: 1rem;
+        margin-right: 3rem;
+        background-color: white;
+        border: 0;
+        border-radius: 8px;
+        box-shadow: 6px 7px 5px grey;
+        padding: 1.5rem;
+        cursor: pointer;
     }
 
     #usuario-list {

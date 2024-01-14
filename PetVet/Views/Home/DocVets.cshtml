@@ -3,6 +3,8 @@
     ViewBag.Title = "DocVets";
 }
 
+@model List<PetVet.Models.Veterinaria>
+
 <div class="container">
     <div class="d-flex" style="justify-content:space-between;">
         <div><h1>Veterinarias</h1></div>
@@ -12,13 +14,13 @@
     <div style="width: 100%; margin-right: auto; margin-left: auto; margin-bottom: 2rem;" id="vet-list"></div>
 
     @*<div style="margin-top:2rem;  text-align:center;">
-        <button type="button" onclick="addNewVet()" class="btn btn-new-mas">Nueva Veterinaria</button>
-    </div>*@
+            <button type="button" onclick="addNewVet()" class="btn btn-new-mas">Nueva Veterinaria</button>
+        </div>*@
 </div>
 
 <script type="text/x-kendo-template" id="template">
     <div style="width:100%; display:flex; justify-content:center;">
-        <button onclick="goToUsers()" class="card vet-card" style="width:500px; border:1px solid; text-align:center;height:fit-content; margin-bottom:1rem; padding:1rem 0; border-radius:8px; background-color:white;">
+        <button onclick="goToUsers(#=VeterinariaID#)" class="card vet-card" style="width:500px; border:1px solid; text-align:center;height:fit-content; margin-bottom:1rem; padding:1rem 0; border-radius:8px; background-color:white;">
             <div class="card-body">
                 <h3>#:Nombre#</h3>
                 <div style="margin-top:1rem;">
@@ -33,26 +35,29 @@
 
 <script>
 
-var mascotas = [
-    { id: 1, Nombre: "Clínica de Mascotas AmigoAnimal", Direccion: "Bakker 2", Telefono: "2812799" },
-    { id: 2, Nombre: "Clínica Veterinaria Animalia", Direccion: "El Condado", Telefono: "2812799" },
-    { id: 3, Nombre: "Hospital Veterinario PetCare", Direccion: "Barrio Nuevo", Telefono: "2812799" },
-    { id: 4, Nombre: "Centro Veterinario Paws & Claws", Direccion: "Tumbaco", Telefono: "2812799" },
-    { id: 5, Nombre: "Consultorio Veterinario VetVida", Direccion: "El Bosque", Telefono: "2812799" }
-    ];
+//var mascotas = [
+//    { id: 1, Nombre: "Clínica de Mascotas AmigoAnimal", Direccion: "Bakker 2", Telefono: "2812799" },
+//    { id: 2, Nombre: "Clínica Veterinaria Animalia", Direccion: "El Condado", Telefono: "2812799" },
+//    { id: 3, Nombre: "Hospital Veterinario PetCare", Direccion: "Barrio Nuevo", Telefono: "2812799" },
+//    { id: 4, Nombre: "Centro Veterinario Paws & Claws", Direccion: "Tumbaco", Telefono: "2812799" },
+//    { id: 5, Nombre: "Consultorio Veterinario VetVida", Direccion: "El Bosque", Telefono: "2812799" }
+//    ];
 
+     var veterinarias = @Html.Raw(Json.Encode(Model));
 
     $("#vet-list").kendoListView({
         dataSource: {
-            data: mascotas
+            data: veterinarias
         },
         template: kendo.template($("#template").html()),
         pageable: false,
         filterable: true
     });
 
-    function goToUsers() {
-        window.location.href = "@Html.Raw(Url.Action("UsersList", "Home"))";
+    function goToUsers(vetid) {
+        var url = '@Url.Action("UsersList", "Home")?id=' + vetid;
+        window.location.href = url;
+        @*window.location.href = "@Html.Raw(Url.Action("UsersList", "Home"))";*@
     }
 
     function addNewVet() {
@@ -109,12 +114,12 @@ var mascotas = [
     }
 
     .k-listview-content {
-        display:flex;
-        flex-direction:column;
+        display: flex;
+        flex-direction: column;
     }
 
-    .card-body h3{
-        margin:0;
+    .card-body h3 {
+        margin: 0;
     }
 
     #vet-list {

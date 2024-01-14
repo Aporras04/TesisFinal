@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -116,7 +117,7 @@ namespace PetVet.Controllers
             try
             {
                 
-                user = db.Usuarios.Where(i => i.Mail == email && i.Password == psswd).FirstOrDefault();
+                user = db.Usuarios.Include(u => u.Mascotas).FirstOrDefault(i => i.Mail == email && i.Password == psswd);
 
                 if (user != null)
                 {
@@ -166,7 +167,8 @@ namespace PetVet.Controllers
             if (Session["UserInfo"] != null)
             {
                 var user = JsonConvert.DeserializeObject<Usuario>(Session["UserInfo"].ToString());
-                mascotas = db.Mascotas.Where(i => i.Usuario == user.UsuarioID).ToList();
+                //mascotas = db.Mascotas.Where(i => i.Usuario == user.UsuarioID).ToList();
+                mascotas = (List<Mascota>)user.Mascotas;
             }
             
             return View(mascotas);
@@ -203,13 +205,24 @@ namespace PetVet.Controllers
                 {
                     if (Session["UserInfo"] != null)
                     {
-                        var user = JsonConvert.DeserializeObject<Usuario>(Session["UserInfo"].ToString());
-                        pet.Usuario = user.UsuarioID;
+                        var userInfo = JsonConvert.DeserializeObject<Usuario>(Session["UserInfo"].ToString());
+
+                        Usuario usuario = db.Usuarios.Include(u => u.Mascotas).FirstOrDefault(u => u.UsuarioID == userInfo.UsuarioID);
+
+
+                        if (usuario != null)
+                        {
+                            pet.CedulaUsuario = userInfo.Cedula;
+                            pet.NombreUsuario = userInfo.Nombre;
+                            usuario.Mascotas.Add(pet);
+                            db.SaveChanges();
+                            Session["UserInfo"] = JsonConvert.SerializeObject(usuario);
+                        }
+                       
+                        //pet.Usuario = user.UsuarioID;                        
                     }
-
-
-                    db.Mascotas.Add(pet);
-                    db.SaveChanges();
+                    //db.Mascotas.Add(pet);
+                    //db.SaveChanges();
                 }
                 else
                 {
@@ -305,27 +318,37 @@ namespace PetVet.Controllers
 
         public ActionResult DocVets()
         {
-            return View();
-        }
-
-        public ActionResult UsersList()
-        {
-            List<Usuario> users = new List<Usuario>();
-            
-            int id = 0;
+            List<Veterinaria> veterinarias = new List<Veterinaria>();
             try
             {
-                if (ModelState.IsValid)
+                if (Session["UserType"] != null && Session["UserType"].ToString() == "Vet")
                 {
-                    users = db.Usuarios.ToList();                    
+                    veterinarias = db.Veterinarias.ToList();
                 }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
+            }
 
+            return View(veterinarias);
+        }
+
+        public ActionResult UsersList(int id)
+        {
+            List<Mascota> pets = new List<Mascota>();
+            Veterinaria vet =  new Veterinaria();
+            try
+            {
+                vet = db.Veterinarias.Where(i => i.VeterinariaID == id).FirstOrDefault();
+                ViewBag.VetName = vet.Nombre;
+                pets = db.Mascotas.Where(i => i.Veterinaria == id).ToList();
             }
             catch (Exception ex)
             {
                 ModelState.AddModelError("", "Unable to save changes.");
             }
-            return View(users);
+            return View(pets);
         }
 
         public ActionResult NewMed()

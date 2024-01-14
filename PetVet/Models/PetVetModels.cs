@@ -43,6 +43,8 @@ namespace PetVet.Models
         public string Password { get; set; }
 
         public ICollection<Mascota> Mascotas { get; set; }
+
+        
     }
 
     public class Mascota
@@ -84,7 +86,10 @@ namespace PetVet.Models
         public string Esterilizado { get; set; }
         public int Veterinaria { get; set; }
         public ICollection<Tratamiento> Tratamientos { get; set; }
-        public int Usuario { get; set; }
+
+        public string NombreUsuario { get; set; }
+        public string CedulaUsuario { get; set; }
+
     }
 
     public class Tratamiento
@@ -102,9 +107,9 @@ namespace PetVet.Models
 
         public DateTime FechaProxima { get; set; }
 
-        public Mascota Mascota { get; set; }
+        //public Mascota Mascota { get; set; }
 
-        public string Veterinario { get; set; }
+        public string NombreVeterinario { get; set; }
     }
 
     public class Veterinaria
