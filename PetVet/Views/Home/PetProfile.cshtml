@@ -28,10 +28,10 @@
         overflow-x: auto;
     }
 
-        .k-grid-content table,
-        table {
-            width: 777px;
-        }
+    .k-grid-content table,
+    table {
+        width: 777px;
+    }
 
     .k-pager-numbers {
         display: none !important;
@@ -43,11 +43,19 @@
 
     .k-pager-wrap {
         display: flex;
-        padding: 1rem;
+        padding:1rem;
     }
 
-    .k-grid td {
-        border-color: transparent !important;
+    .k-grid td{
+        border-color:transparent !important;
+    }
+
+    .k-alt{
+        background-color: transparent;
+    }
+
+    .k-header {
+        background-color: rgba(247, 136, 47, 0.5);
     }
 
     .k-alt {
@@ -83,12 +91,16 @@
             <div>Esterilizado: <span style="font-weight:400;">@Model.Esterilizado</span></div>
         </div>
     </div>
-    <div class="mt-1" style="margin-top:1rem;">
+    <div class="mt-1" style="margin-top:1rem; margin-bottom:2rem;">
         <div style="margin-bottom:1rem; display:flex; justify-content:space-between;">
             <div style="font-weight: 600;">Tratamientos:</div>
-            <div>
-                <button type="button" onclick="addNewMed()" class="btn btn-new-mas">Nuevo Tratamiento</button>
-            </div>
+            @if (Session["UserType"] == "Vet")
+            {
+                <div>
+                    <button type="button" onclick="addNewMed()" class="btn btn-new-mas">Nuevo Tratamiento</button>
+                </div>
+            }
+
         </div>
         <div id="tratamientos-grid"></div>
     </div>

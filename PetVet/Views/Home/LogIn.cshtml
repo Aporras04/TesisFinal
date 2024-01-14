@@ -72,6 +72,11 @@
       }
     }
 
+    #error-msg{
+        color:red;
+        display:none;
+    }
+
 </style>
 
 
@@ -80,6 +85,7 @@
             <div id="login-form" style="display:flex; justify-content:center; flex-direction:column; text-align:center; width:60%;">
                 <div style="">
                     <div class="mb-4 weight-600" style="font-size:2rem;">Bienvenido</div>
+                    <span id="error-msg">Email o Contrasena incorrecto</span>
                     <div class="text-start mb-2">
                         <div class="weight-600">Email</div>
                         @Html.TextBoxFor(model => model.Mail, new { @class = "width-100 input-inicio" })
@@ -88,7 +94,7 @@
                     </div>
                     <div class="text-start">
                         <div class="weight-600">Contraseña</div>
-                        @Html.TextBoxFor(model => model.Password, new { @class = "width-100 input-inicio" })
+                        @Html.TextBoxFor(model => model.Password, new { @class = "width-100 input-inicio", type="password" })
                         @Html.ValidationMessageFor(model => model.Password)
                         @*<input class="width-100 input-inicio" />*@
                     </div>
@@ -118,6 +124,9 @@
 
 
 <script>
+
+    $("#error-msg").hide();
+
     function IniciarSesion() {
         
         $(".btn-inicio").addClass("btn-loading");
@@ -139,14 +148,18 @@
             success: function (response) {
                 if (response.redirectUrl) {
                     // Redirigir manualmente
+                    
                     window.location.href = response.redirectUrl;
+                    
                 } else {
                     $(".btn-inicio").removeClass("btn-loading");
+                    $("#error-msg").show();
                 }
             },
             error: function (error) {
                 // Manejar el error
                 $(".btn-inicio").removeClass("btn-loading");
+                $("#error-msg").show();
                 console.error(error);
             }
         });
