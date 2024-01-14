@@ -124,28 +124,28 @@ namespace PetVet.Models
         [StringLength(10)]
         public string Telefono { get; set; }
 
-        public Mascota Mascota { get; set; }
+        //public Mascota Mascota { get; set; }
 
-        public Doctor Doctor { get; set; }
+        //public Usuario Doctor { get; set; }
     }
 
-    public class Doctor
-    {
-        [Key]
-        public int DoctorID { get; set; }
+    //public class Doctor
+    //{
+    //    [Key]
+    //    public int DoctorID { get; set; }
 
-        [Column(TypeName = "VARCHAR")]
-        [StringLength(45)]
-        public string Nombre { get; set; }
+    //    [Column(TypeName = "VARCHAR")]
+    //    [StringLength(45)]
+    //    public string Nombre { get; set; }
 
-        [Column(TypeName = "VARCHAR")]
-        [StringLength(10)]
-        public string Cedula { get; set; }
+    //    [Column(TypeName = "VARCHAR")]
+    //    [StringLength(10)]
+    //    public string Cedula { get; set; }
 
-        [Column(TypeName = "VARCHAR")]
-        [StringLength(45)]
-        public string Mail { get; set; }
+    //    [Column(TypeName = "VARCHAR")]
+    //    [StringLength(45)]
+    //    public string Mail { get; set; }
 
-        public ICollection<Veterinaria> Veterinarias { get; set; }
-    }
+    //    public ICollection<Veterinaria> Veterinarias { get; set; }
+    //}
 }

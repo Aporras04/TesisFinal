@@ -87,6 +87,10 @@ namespace PetVet.Controllers
                     db.Usuarios.Add(user);
                     db.SaveChanges();
                 }
+                else
+                {
+                    return View(user);
+                }
                     
             }
             catch (Exception ex)
@@ -158,15 +162,14 @@ namespace PetVet.Controllers
         public ActionResult Pets()
         {
             List<Mascota> mascotas = new List<Mascota>();
+
             if (Session["UserInfo"] != null)
             {
                 var user = JsonConvert.DeserializeObject<Usuario>(Session["UserInfo"].ToString());
                 mascotas = db.Mascotas.Where(i => i.Usuario == user.UsuarioID).ToList();
-
             }
             
             return View(mascotas);
-            
         }
 
         public ActionResult NewPet()

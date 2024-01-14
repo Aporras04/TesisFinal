@@ -18,7 +18,7 @@ namespace PetVet.Data
         }
 
         // DbSet para cada entidad en tu modelo
-        public DbSet<Doctor> Doctores { get; set; }
+        //public DbSet<Doctor> Doctores { get; set; }
         public DbSet<Veterinaria> Veterinarias { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Mascota> Mascotas { get; set; }
@@ -26,7 +26,7 @@ namespace PetVet.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Doctor>().ToTable("Doctor");
+            //modelBuilder.Entity<Doctor>().ToTable("Doctor");
             modelBuilder.Entity<Veterinaria>().ToTable("Veterinaria");
             modelBuilder.Entity<Usuario>().ToTable("Usuario");
             modelBuilder.Entity<Mascota>().ToTable("Mascota");

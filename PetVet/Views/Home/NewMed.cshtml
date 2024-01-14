@@ -9,6 +9,16 @@
     form {
         height: 100%;
     }
+
+    .width-500{
+        width:500px;
+    }
+
+    @@media(max-width:400px){
+        .width-500{
+            width:100% !important;
+        }
+    }
 </style>
 
 <div style="height:100%;">
@@ -21,39 +31,39 @@
                     @*@Html.HiddenFor(model => model.UsuarioID)*@
                     <div class="text-start">
                         <div class="weight-600">Nombre</div>
-                        @Html.TextBoxFor(model => model.Mascota.Nombre, new { @class = "width-100 input-inicio" })
+                        @Html.TextBoxFor(model => model.Mascota.Nombre, new { @class = "width-100 input-inicio width-500" })
                         @Html.ValidationMessageFor(model => model.Mascota.Nombre)
                         @*<input class="width-100 input-inicio" required />*@
                     </div>
                     <div class="text-start">
                         <div class="weight-600">Edad</div>
-                        @Html.TextBoxFor(model => model.Mascota.Edad, new { @class = "width-100 input-inicio" })
+                        @Html.TextBoxFor(model => model.Mascota.Edad, new { @class = "width-100 input-inicio width-500" })
                         @Html.ValidationMessageFor(model => model.Mascota.Edad)
                         @*<input class="width-100 input-inicio" required />*@
                     </div>
                     <div class="text-start">
                         <div class="weight-600">Fecha actual</div>
-                        @Html.TextBoxFor(model => model.Fecha, new { @class = "width-100 input-inicio" })
+                        @Html.TextBoxFor(model => model.Fecha, new { @class = "width-100 input-inicio width-500" })
                         @Html.ValidationMessageFor(model => model.Fecha)
                     </div>
                     <div class="text-start">
                         <div class="weight-600">Peso</div>
-                        @Html.TextBoxFor(model => model.PesoMascota, new { @class = "width-100 input-inicio" })
+                        @Html.TextBoxFor(model => model.PesoMascota, new { @class = "width-100 input-inicio width-500" })
                         @Html.ValidationMessageFor(model => model.PesoMascota)
                     </div>
                     <div class="text-start">
                         <div class="weight-600">Tratamiento</div>
-                        @Html.TextAreaFor(model => model.Descripcion, new { @class = "width-100 input-inicio" })
+                        @Html.TextAreaFor(model => model.Descripcion, new { @class = "width-100 input-inicio width-500" })
                         @Html.ValidationMessageFor(model => model.Descripcion)
                     </div>
                     <div class="text-start">
                         <div class="weight-600">Veterinario</div>
-                        @Html.TextBoxFor(model => model.Veterinario, new { @class = "width-100 input-inicio" })
+                        @Html.TextBoxFor(model => model.Veterinario, new { @class = "width-100 input-inicio width-500" })
                         @Html.ValidationMessageFor(model => model.Veterinario)
                     </div>
                     <div class="text-start">
                         <div class="weight-600">Proxima Cita</div>
-                        @Html.TextBoxFor(model => model.FechaProxima, new { @class = "width-100 input-inicio" })
+                        @Html.TextBoxFor(model => model.FechaProxima, new { @class = "width-100 input-inicio width-500" })
                         @Html.ValidationMessageFor(model => model.FechaProxima)
                     </div>
 
