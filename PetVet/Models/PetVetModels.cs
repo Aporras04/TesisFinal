@@ -14,32 +14,32 @@ namespace PetVet.Models
 
         [Column(TypeName = "VARCHAR")]
         [StringLength(45, ErrorMessage ="Maximo 45 caracteres"), MinLength(10, ErrorMessage = "Minimo 10 caracteres")]
-        [Required(ErrorMessage = "Camop requerido")]
+        [Required(ErrorMessage = "Campo requerido")]
         public string Nombre { get; set; }
 
         [Column(TypeName = "VARCHAR")]
         [StringLength(60, ErrorMessage = "Maximo 60 caracteres"), MinLength(5, ErrorMessage = "Minimo 5 caracteres")]
-        [Required(ErrorMessage = "Camop requerido")]
+        [Required(ErrorMessage = "Campo requerido")]
         public string Direccion { get; set; }
 
         [Column(TypeName = "VARCHAR")]
         [StringLength(10, ErrorMessage = "Maximo 10 caracteres"), MinLength(10, ErrorMessage = "Minimo 10 caracteres"), RegularExpression("([0-9]+)", ErrorMessage = "Ingresar solo numeros")]
-        [Required(ErrorMessage = "Camop requerido")]
+        [Required(ErrorMessage = "Campo requerido")]
         public string Cedula { get; set; }
 
         [Column(TypeName = "VARCHAR")]
-        [StringLength(10,ErrorMessage ="Maximo 10 caracteres"), MinLength(10, ErrorMessage = "Minimo 10 caracteres"), RegularExpression("([0-9]+)", ErrorMessage = "Ingresar solo numeros")]
-        [Required(ErrorMessage = "Camop requerido")]
+        [StringLength(10,ErrorMessage ="Maximo 10 caracteres"), MinLength(7, ErrorMessage = "Minimo 7 caracteres"), RegularExpression("([0-9]+)", ErrorMessage = "Ingresar solo numeros")]
+        [Required(ErrorMessage = "Campo requerido")]
         public string Telefono { get; set; }
 
         [Column(TypeName = "VARCHAR")]
         [RegularExpression(@"^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$", ErrorMessage = "Correo no valido")]
-        [Required(ErrorMessage = "Camop requerido")]
+        [Required(ErrorMessage = "Campo requerido")]
         public string Mail { get; set; }
 
         [Column(TypeName = "VARCHAR")]
         //[RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$", ErrorMessage ="Contrasena invalida")]
-        [Required(ErrorMessage = "Camop requerido")]
+        [Required(ErrorMessage = "Campo requerido")]
         public string Password { get; set; }
 
         public ICollection<Mascota> Mascotas { get; set; }

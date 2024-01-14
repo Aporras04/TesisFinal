@@ -15,15 +15,23 @@
         padding-right: 0 !important;
     }
 
+    .k-grid-header th{
+        padding:1rem;
+    }
+
+    tbody tr td{
+        padding:1rem;
+    }
+
     .k-grid-content {
         overflow-y: hidden;
         overflow-x: auto;
     }
 
-        .k-grid-content table,
-        table {
-            width: 777px;
-        }
+    .k-grid-content table,
+    table {
+        width: 777px;
+    }
 
     .k-pager-numbers {
         display: none !important;
@@ -33,20 +41,22 @@
         display: none;
     }
 
-    /*.k-pager-numbers-wrap {
-        width: 75%;
-        text-align: end;
-        justify-content: flex-end;
-    }*/
-
-    /*.k-pager-numbers-wrap .k-dropdown{
-        border:0 !important
-    }*/
-
     .k-pager-wrap {
         display: flex;
+        padding:1rem;
     }
 
+    .k-grid td{
+        border-color:transparent !important;
+    }
+
+    .k-alt{
+        background-color: transparent;
+    }
+
+    .k-header {
+        background-color: rgba(247, 136, 47, 0.5);
+    }
 
     @@media (min-width: 992px) {
         #perfil-container {
@@ -74,12 +84,16 @@
             <div>Esterilizado: <span style="font-weight:400;">@Model.Esterilizado</span></div>
         </div>
     </div>
-    <div class="mt-1" style="margin-top:1rem;">
+    <div class="mt-1" style="margin-top:1rem; margin-bottom:2rem;">
         <div style="margin-bottom:1rem; display:flex; justify-content:space-between;">
             <div style="font-weight: 600;">Tratamientos:</div>
-            <div>
-                <button type="button" onclick="addNewMed()" class="btn btn-new-mas">Nuevo Tratamiento</button>
-            </div>
+            @if (Session["UserType"] == "Vet")
+            {
+                <div>
+                    <button type="button" onclick="addNewMed()" class="btn btn-new-mas">Nuevo Tratamiento</button>
+                </div>
+            }
+
         </div>
         <div id="tratamientos-grid"></div>
     </div>
@@ -100,11 +114,9 @@
             data: gridData
         },
         columns: [
-            { field: "nombre", title: "Nombre", width: 100 },
-            { field: "edad", title: "Edad", width: 100 },
-            { field: "fecha", title: "Fecha Revision", width: 150, sortable: { initialDirection: "desc" } },
-            { field: "peso", title: "Peso", width: 80 },
-            { field: "tratamiento", title: "Tratamiento", width: 200 },
+            { field: "fecha", title: "Fecha Revision", width: 140, sortable: { initialDirection: "desc" } },
+            { field: "peso", title: "Peso", width: 70 },
+            { field: "tratamiento", title: "Tratamiento", width: 190 },
             { field: "doctor", title: "Veterinario", width: 120 },
             { field: "cita", title: "Próxima Cita", width: 100 },
         ],

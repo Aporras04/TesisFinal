@@ -35,6 +35,10 @@
     form{
         height:100%;
     }
+
+    .field-validation-error{
+        color:red;
+    }
 </style>
 @using (Html.BeginForm())
 {
@@ -63,7 +67,7 @@
                         @Html.TextBoxFor(model => model.Telefono, new { @class = "width-100 input-inicio" })
                         @Html.ValidationMessageFor(model => model.Telefono)
                     </div>
-                    <div class="text-start mb-2">
+                    <div class="text-start">
                         <div class="weight-600">Email</div>
                         @Html.TextBoxFor(model => model.Mail, new { @class = "width-100 input-inicio" })
                         @Html.ValidationMessageFor(model => model.Mail)
@@ -90,9 +94,3 @@
         </div>
     </div>
 }
-    
-<script>
-    function loading() {
-
-    }
-</script>
