@@ -115,17 +115,47 @@
     //    { nombre: "Candy", edad: "1 mes", fecha: "10 Dic 2023", peso: "20 Kl", tratamiento: "vacuna", doctor: "Roberto Lopez", cita: "01 Ene 2024" },
     //    { nombre: "Candy", edad: "1 mes", fecha: "25 Dic 2023", peso: "5 Kl", tratamiento: "vacuna", doctor: "Roberto Lopez", cita: "01 Ene 2024" },
     //];
+
     var gridData = @Html.Raw(Json.Encode(Model.Tratamientos));
+
     $("#tratamientos-grid").kendoGrid({
         dataSource: {
             data: gridData
         },
         columns: [           
-            { field: "Fecha", title: "Fecha Revision", width: 140, sortable: { initialDirection: "desc" } },
+            {
+                field: "Fecha",
+                title: "Fecha Revision",
+                width: 140,
+                sortable: { initialDirection: "desc" },
+                format: "{0:dd MM yyyy}",
+                template: function (dataItem) {
+                    var match = /\/Date\((\d+)\)\//.exec(dataItem.Fecha);
+                    if (match) {
+                        var milliseconds = parseInt(match[1]);
+                        return kendo.toString(new Date(milliseconds), 'dd/MM/yyyy');
+                    } else {
+                        return "Fecha no válida";
+                    }
+                }
+            },
             { field: "PesoMascota", title: "Peso", width: 70 },
             { field: "Descripcion", title: "Tratamiento", width: 190 },
             { field: "NombreVeterinario", title: "Veterinario", width: 120 },
-            { field: "FechaProxima", title: "Próxima Cita", width: 100 },
+            {
+                field: "FechaProxima",
+                title: "Próxima Cita",
+                width: 100,
+                template: function (dataItem) {
+                    var match = /\/Date\((\d+)\)\//.exec(dataItem.FechaProxima);
+                    if (match) {
+                        var milliseconds = parseInt(match[1]);
+                        return kendo.toString(new Date(milliseconds), 'dd/MM/yyyy');
+                    } else {
+                        return "Fecha no válida";
+                    }
+                }
+            },
         ],
         pageable: {
             pageSize: 10,
